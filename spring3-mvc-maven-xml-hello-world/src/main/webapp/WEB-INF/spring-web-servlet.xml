@@ -10,20 +10,6 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<context:component-scan base-package="com.mkyong.web" />
-
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/views/jsp/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
-
-	<mvc:resources mapping="/resources/**" location="/resources/" />
-
-	<mvc:annotation-driven />
+	<context:component-scan base-package="com.cosmo.form.config" />
 
 </beans>
