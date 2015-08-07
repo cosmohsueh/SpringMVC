@@ -10,7 +10,7 @@
 <body>
 	<center>
 		<h1>Sending e-mail with Spring MVC</h1>
-		<form action="sendmail.do" method="post">
+		<form action="sendmail.do" method="post" enctype="multipart/form-data">
 			<table border="0" width="80%">
 				<tr>
 					<td>To:</td>
@@ -23,6 +23,10 @@
 				<tr>
 					<td>Message:</td>
 					<td><textarea rows="10" cols="50" name="message"></textarea></td>
+				</tr>
+				<tr>
+					<td>Attach file:</td>
+					<td><input type="file" name="attachFile" size="60"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
