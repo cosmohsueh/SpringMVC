@@ -6,4 +6,5 @@
 		
 	<import resource="database.xml"/>
 	
+	<import resource="applicationContext-security.xml"/>
 </beans>
