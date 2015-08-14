@@ -2,6 +2,12 @@ package data;
 
 import java.io.Serializable;
 
+/**
+ * 通知單範本
+ * 
+ * @author cosmo
+ *
+ */
 public class NoticeTemplate implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;

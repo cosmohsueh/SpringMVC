@@ -14,4 +14,15 @@
 	  <property name="username" value="${jdbc.username}"/>
 	  <property name="password" value="${jdbc.password}"/>
 	</bean>
+	
+	<bean id="ActivityDAO" class="com.FlySheet.SignUp.dao.ActivityDAO">
+	</bean>
+	<bean id="ApplicantsDAO" class="com.FlySheet.SignUp.dao.ApplicantsDAO"/>
+	<bean id="NoticeTemplateDAO" class="com.FlySheet.SignUp.dao.NoticeTemplateDAO"/>
+	<bean id="SessionsDAO" class="com.FlySheet.SignUp.dao.SessionsDAO"/>
+	<bean id="UsersDAO" class="com.FlySheet.SignUp.dao.UsersDAO" >
+		<constructor-arg>
+			<ref bean="dataSource"/>
+		</constructor-arg>
+	</bean>
 </beans>

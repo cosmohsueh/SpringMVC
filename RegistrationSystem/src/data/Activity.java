@@ -2,6 +2,12 @@ package data;
 
 import java.io.Serializable;
 
+/**
+ * 報名活動主檔
+ * 
+ * @author cosmo
+ *
+ */
 public class Activity implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;

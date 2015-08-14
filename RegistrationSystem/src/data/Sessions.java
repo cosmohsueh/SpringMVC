@@ -3,6 +3,12 @@ package data;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 場次
+ * 
+ * @author cosmo
+ *
+ */
 public class Sessions implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;

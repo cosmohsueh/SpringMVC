@@ -2,6 +2,12 @@ package data;
 
 import java.io.Serializable;
 
+/**
+ * 使用者
+ * 
+ * @author cosmo
+ *
+ */
 public class Users implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;

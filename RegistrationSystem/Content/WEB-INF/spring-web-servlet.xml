@@ -10,15 +10,10 @@
         http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 		
-	<context:component-scan base-package="com.cosmo.web"/>
-	
-	<bean id="viewResolver1" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
-        <property name="order" value="1"/>
-        <property name="basename" value="views"/>
-    </bean>
+	<context:component-scan base-package="com.FlySheet.SignUp.web"/>
 	
     <bean id="viewResolver2" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/jsp/" />
+        <property name="prefix" value="/" />
         <property name="suffix" value=".jsp" />
     </bean>
 </beans>

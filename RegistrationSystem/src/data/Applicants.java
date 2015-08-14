@@ -3,6 +3,12 @@ package data;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 報名者資訊
+ * 
+ * @author cosmo
+ *
+ */
 public class Applicants implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;
