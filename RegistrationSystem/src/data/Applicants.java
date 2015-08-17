@@ -69,6 +69,10 @@ public class Applicants implements Serializable, Cloneable {
 	 * 1:葷 2:素
 	 */
 	private Integer meals;
+	
+	public Applicants(){
+		
+	}
 
 	public Applicants(Integer applicantsId, Integer activityId,
 			String fullName, String nationalIdNumber, String organization,

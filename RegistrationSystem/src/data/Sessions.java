@@ -40,6 +40,10 @@ public class Sessions implements Serializable, Cloneable {
 	 * 行前通知日期
 	 */
 	private Date dueNotice;
+	
+	public Sessions(){
+		
+	}
 
 	public Sessions(Integer sessionsId, Integer activityId,
 			String sessionsName, Date startDate, Date endDate,

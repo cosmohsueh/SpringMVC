@@ -21,6 +21,10 @@ public class Activity implements Serializable, Cloneable {
 	 * 活動名稱
 	 */
 	private String activityName;
+	
+	public Activity(){
+		
+	}
 
 	public Activity(Integer activityId, String activityName) {
 		super();

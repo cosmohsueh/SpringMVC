@@ -27,6 +27,10 @@ public class Users implements Serializable, Cloneable {
 	 */
 	private String userName;
 	private String email;
+	
+	public Users(){
+		
+	}
 
 	public Users(String username, String password, String userName, String email) {
 		this.username = username;

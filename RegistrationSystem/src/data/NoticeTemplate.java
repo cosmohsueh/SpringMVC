@@ -23,6 +23,10 @@ public class NoticeTemplate implements Serializable, Cloneable {
 	private String subject;
 
 	private String content;
+	
+	public NoticeTemplate(){
+		
+	}
 
 	public NoticeTemplate(Integer noticeId, Integer sessionId,
 			Integer noticeType, String subject, String content) {
