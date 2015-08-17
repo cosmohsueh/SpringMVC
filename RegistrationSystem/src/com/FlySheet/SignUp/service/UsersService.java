@@ -13,19 +13,22 @@ import data.Users;
 
 public class UsersService {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(UsersService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UsersService.class);
 
 	@Autowired
 	private UsersDAO usersDao;
 
 	public void saveUsers(Users users) {
 		try {
-//			if (users.getUsername() != null && users.getUsername().isEmpty()) {
+			if (users.getUserId() == null) {
 				usersDao.save(users);
-//			} else {
-//				usersDao.update(users);
-//			}
+			} else {
+				if(users.getPassword() == null || users.getPassword().isEmpty()){
+					Users dbUsers = usersDao.findUsersById(users.getUserId());
+					users.setPassword(dbUsers.getPassword());
+				}
+				usersDao.update(users);
+			}
 		} catch (SQLException e) {
 			LOGGER.error(e.getMessage(), e);
 		}
@@ -40,18 +43,18 @@ public class UsersService {
 		return null;
 	}
 
-	public Users findUsersByUsername(String username) {
+	public Users findUsersById(Integer userId) {
 		try {
-			return usersDao.findByUsername(username);
+			return usersDao.findUsersById(userId);
 		} catch (SQLException e) {
 			LOGGER.error(e.getMessage(), e);
 		}
 		return null;
 	}
 
-	public void deleteUser(String username) {
+	public void deleteUser(Integer userId) {
 		try {
-			usersDao.delete(username);
+			usersDao.delete(userId);
 		} catch (SQLException e) {
 			LOGGER.error(e.getMessage(), e);
 		}

@@ -13,6 +13,7 @@
 	<spring:url var="usersActionUrl" value="/admin/Maintain/saveUsers"/>
 	<form:form action="${usersActionUrl}" modelAttribute="usersForm" method="POST">
 		<table>
+			<form:hidden path="userId"/>
 			<tr>
 				<td>
 					<spring:message code="admin.Maintain.Users.UsersForm.username" text="username"/>:
@@ -23,6 +24,7 @@
 							<form:input path="username"/>
 						</c:when>
 						<c:otherwise>
+							<form:hidden path="username"/>
 							${usersForm.username}
 						</c:otherwise>
 					</c:choose>

@@ -31,6 +31,30 @@ public class UsersDAO {
 	                DataAccessException {
 	            if (rs.next()) {
 	            	Users users = new Users();
+	            	users.setUserId(rs.getInt("USER_ID"));
+	            	users.setUsername(rs.getString("USERNAME"));
+	            	users.setPassword(rs.getString("PASSWORD"));
+	            	users.setUserName(rs.getString("USER_NAME"));
+	            	users.setEmail(rs.getString("EMAIL"));
+	                return users;
+	            }
+	 
+	            return null;
+	        }
+	 
+	    });
+	}
+	
+	public Users findUsersById(Integer usersId) throws SQLException {
+		String sql = "SELECT * FROM USERS WHERE USER_ID=" + usersId;
+	    return jdbcTemplate.query(sql, new ResultSetExtractor<Users>() {
+	 
+	        @Override
+	        public Users extractData(ResultSet rs) throws SQLException,
+	                DataAccessException {
+	            if (rs.next()) {
+	            	Users users = new Users();
+	            	users.setUserId(rs.getInt("USER_ID"));
 	            	users.setUsername(rs.getString("USERNAME"));
 	            	users.setPassword(rs.getString("PASSWORD"));
 	            	users.setUserName(rs.getString("USER_NAME"));
@@ -52,6 +76,7 @@ public class UsersDAO {
 			@Override
 			public Users mapRow(ResultSet rs, int num) throws SQLException {
 				Users users = new Users();
+				users.setUserId(rs.getInt("USER_ID"));
 				users.setUsername(rs.getString("USERNAME"));
 				users.setPassword(rs.getString("PASSWORD"));
 				users.setUserName(rs.getString("USER_NAME"));
@@ -64,18 +89,18 @@ public class UsersDAO {
 	}
 	
 	public void save(Users users) throws SQLException {
-		String sql = "insert into USERS values(?, ?, ?, ?)";
+		String sql = "insert into USERS (USERNAME, PASSWORD, USER_NAME, EMAIL)values(?, ?, ?, ?)";
 		jdbcTemplate.update(sql, users.getUsername(), users.getPassword(), users.getUserName(), users.getEmail());
 	}
 	
 	public void update(Users users) throws SQLException {
-		String sql = "update USERS set PASSWORD=?, USER_NAME=?, EMAIL=? WHERE USERNAME=?";
-		jdbcTemplate.update(sql, users.getPassword(), users.getUserName(), users.getEmail(), users.getUsername());
+		String sql = "update USERS set USERNAME=?, PASSWORD=?, USER_NAME=?, EMAIL=? WHERE USER_ID=?";
+		jdbcTemplate.update(sql, users.getUsername(), users.getPassword(), users.getUserName(), users.getEmail(), users.getUserId());
 	}
 	
-	public void delete(String username) throws SQLException {
-		String sql = "delete from USERS where USERNAME=?";
-		jdbcTemplate.update(sql, username);
+	public void delete(Integer userId) throws SQLException {
+		String sql = "delete from USERS where USER_ID=?";
+		jdbcTemplate.update(sql, userId);
 	}
 
 }

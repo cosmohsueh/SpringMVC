@@ -33,21 +33,21 @@ public class MaintainUsers {
 	}
 	
 	@RequestMapping(value = "/editUsers", method = RequestMethod.GET)
-	public ModelAndView editUsers(@RequestParam(required = false) String username){
+	public ModelAndView editUsers(@RequestParam(required = false) Integer userId){
 		ModelAndView model = new ModelAndView("admin/Maintain/FormUsers");
 		Users users = new Users();
-		if(username != null && !username.isEmpty()){
-			users = usersService.findUsersByUsername(username);
+		if(userId != null){
+			users = usersService.findUsersById(userId);
 		}
 		model.addObject("usersForm", users);
 		return model;
 	}
 	
 	@RequestMapping(value = "/delUsers", method = RequestMethod.GET)
-	public ModelAndView deleteUsers(@RequestParam String username){
-		LOGGER.debug("deleteUsers: " + username);
+	public ModelAndView deleteUsers(@RequestParam Integer userId){
+		LOGGER.debug("deleteUsers: " + userId);
 		ModelAndView model = new ModelAndView("redirect:/admin/Maintain/Users");
-		usersService.deleteUser(username);
+		usersService.deleteUser(userId);
 		return model;
 	}
 	

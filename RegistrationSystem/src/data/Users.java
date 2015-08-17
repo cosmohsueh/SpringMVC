@@ -14,6 +14,8 @@ public class Users implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Integer userId;
+
 	/**
 	 * 帳號
 	 */
@@ -29,16 +31,26 @@ public class Users implements Serializable, Cloneable {
 	 */
 	private String userName;
 	private String email;
-	
-	public Users(){
-		
+
+	public Users() {
+
 	}
 
-	public Users(String username, String password, String userName, String email) {
+	public Users(Integer userId, String username, String password,
+			String userName2, String email) {
+		this.userId = userId;
 		this.username = username;
 		this.password = password;
-		this.userName = userName;
+		userName = userName2;
 		this.email = email;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -77,5 +89,5 @@ public class Users implements Serializable, Cloneable {
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
-	
+
 }
