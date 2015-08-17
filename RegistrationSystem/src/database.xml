@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+			
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	  <property name="locations" value="classpath:jdbc.properties"/>
 	</bean>
@@ -15,14 +17,31 @@
 	  <property name="password" value="${jdbc.password}"/>
 	</bean>
 	
-	<bean id="ActivityDAO" class="com.FlySheet.SignUp.dao.ActivityDAO">
-	</bean>
-	<bean id="ApplicantsDAO" class="com.FlySheet.SignUp.dao.ApplicantsDAO"/>
-	<bean id="NoticeTemplateDAO" class="com.FlySheet.SignUp.dao.NoticeTemplateDAO"/>
-	<bean id="SessionsDAO" class="com.FlySheet.SignUp.dao.SessionsDAO"/>
-	<bean id="UsersDAO" class="com.FlySheet.SignUp.dao.UsersDAO" >
+	<bean id="activityDAO" class="com.FlySheet.SignUp.dao.ActivityDAO">
 		<constructor-arg>
 			<ref bean="dataSource"/>
 		</constructor-arg>
 	</bean>
+	<bean id="applicantsDAO" class="com.FlySheet.SignUp.dao.ApplicantsDAO">
+		<constructor-arg>
+			<ref bean="dataSource"/>
+		</constructor-arg>
+	</bean>
+	<bean id="noticeTemplateDAO" class="com.FlySheet.SignUp.dao.NoticeTemplateDAO">
+		<constructor-arg>
+			<ref bean="dataSource"/>
+		</constructor-arg>
+	</bean>
+	<bean id="sessionsDAO" class="com.FlySheet.SignUp.dao.SessionsDAO">
+		<constructor-arg>
+			<ref bean="dataSource"/>
+		</constructor-arg>
+	</bean>
+	<bean id="usersDAO" class="com.FlySheet.SignUp.dao.UsersDAO">
+		<constructor-arg>
+			<ref bean="dataSource"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="usersService" class="com.FlySheet.SignUp.service.UsersService"/>
 </beans>

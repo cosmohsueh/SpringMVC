@@ -7,4 +7,11 @@
 	<import resource="database.xml"/>
 	
 	<import resource="applicationContext-security.xml"/>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="message" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	
 </beans>

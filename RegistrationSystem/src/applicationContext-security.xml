@@ -6,10 +6,27 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 		
-	<security:http>
-		<security:http-basic/>
+	<security:global-method-security
+		secured-annotations="enabled" 
+		pre-post-annotations="enabled"/>
+		
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+		<security:form-login 
+				login-page="/login"
+				login-processing-url="/j_spring_security_check"
+				default-target-url="/admin/"/>
+				
+		<security:logout 
+				logout-url="/j_spring_security_logout"
+				logout-success-url="/login"/>
+		
+		<security:remember-me/>
 	</security:http>
 
 	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="userDetailsService"/>
 	</security:authentication-manager>
+	
+	<bean id="userDetailsService" class="com.FlySheet.SignUp.login.service.impl.UserDetailsServiceImpl"/>
 </beans>

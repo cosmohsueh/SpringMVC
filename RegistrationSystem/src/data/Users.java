@@ -2,6 +2,8 @@ package data;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * 使用者
  * 
@@ -71,4 +73,9 @@ public class Users implements Serializable, Cloneable {
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
+	
 }

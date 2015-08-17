@@ -23,7 +23,7 @@ public class UsersDAO {
 	}
 	
 	public Users findByUsername(String username) throws SQLException {
-		String sql = "SELECT * FROM USERS WHERE USERNAME=" + username;
+		String sql = "SELECT * FROM USERS WHERE USERNAME='" + username + "'";
 	    return jdbcTemplate.query(sql, new ResultSetExtractor<Users>() {
 	 
 	        @Override
@@ -44,7 +44,7 @@ public class UsersDAO {
 	    });
 	}
 	
-	public List<Users> findAll() throws SQLException{
+	public List<Users> findAll() throws SQLException {
 		List<Users> usersList = new ArrayList<Users>();
 		String  sql = "select * from USERS";
 		usersList = jdbcTemplate.query(sql, new RowMapper<Users>(){
@@ -63,19 +63,19 @@ public class UsersDAO {
 		return usersList;
 	}
 	
-	public void save(Users users){
+	public void save(Users users) throws SQLException {
 		String sql = "insert into USERS values(?, ?, ?, ?)";
 		jdbcTemplate.update(sql, users.getUsername(), users.getPassword(), users.getUserName(), users.getEmail());
 	}
 	
-	public void update(Users users){
+	public void update(Users users) throws SQLException {
 		String sql = "update USERS set PASSWORD=?, USER_NAME=?, EMAIL=? WHERE USERNAME=?";
 		jdbcTemplate.update(sql, users.getPassword(), users.getUserName(), users.getEmail(), users.getUsername());
 	}
 	
-	public void delete(Users users){
+	public void delete(String username) throws SQLException {
 		String sql = "delete from USERS where USERNAME=?";
-		jdbcTemplate.update(sql, users.getUsername());
+		jdbcTemplate.update(sql, username);
 	}
 
 }
