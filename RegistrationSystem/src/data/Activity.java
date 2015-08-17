@@ -2,6 +2,8 @@ package data;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * 報名活動主檔
  * 
@@ -21,9 +23,9 @@ public class Activity implements Serializable, Cloneable {
 	 * 活動名稱
 	 */
 	private String activityName;
-	
-	public Activity(){
-		
+
+	public Activity() {
+
 	}
 
 	public Activity(Integer activityId, String activityName) {
@@ -46,6 +48,11 @@ public class Activity implements Serializable, Cloneable {
 
 	public void setActivityName(String activityName) {
 		this.activityName = activityName;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

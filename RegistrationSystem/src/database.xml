@@ -44,4 +44,5 @@
 	</bean>
 	
 	<bean id="usersService" class="com.FlySheet.SignUp.service.UsersService"/>
+	<bean id="activityService" class="com.FlySheet.SignUp.service.ActivityService"/>
 </beans>

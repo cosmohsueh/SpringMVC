@@ -12,6 +12,7 @@
 	<spring:url var="activityActionUrl" value="/admin/Maintain/saveActivity"/>
 	<form:form action="${activityActionUrl}" modelAttribute="activityForm" method="POST">
 		<table>
+			<form:hidden path="activityId"/>
 			<tr>
 				<td>
 					<spring:message code="admin.Maintain.Activity.ActivityForm.activityName" text="activityName"/>:

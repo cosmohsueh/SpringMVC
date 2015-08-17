@@ -22,7 +22,7 @@ public class ActivityDAO {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public Activity findByActivityId(Long activityId) throws SQLException {
+	public Activity findByActivityId(Integer activityId) throws SQLException {
 		String sql = "SELECT * FROM ACTIVITY WHERE ACTIVITY_ID=" + activityId;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Activity>() {
 
@@ -71,8 +71,8 @@ public class ActivityDAO {
 				activity.getActivityId());
 	}
 
-	public void delete(Activity activity) {
+	public void delete(Integer activityId) {
 		String sql = "DELETE FROM ACTIVITY WHERE ACTIVITY_ID=?";
-		jdbcTemplate.update(sql, activity.getActivityId());
+		jdbcTemplate.update(sql, activityId);
 	}
 }
