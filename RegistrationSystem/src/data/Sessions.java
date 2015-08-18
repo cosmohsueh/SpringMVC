@@ -3,6 +3,9 @@ package data;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 場次
  * 
@@ -24,21 +27,25 @@ public class Sessions implements Serializable, Cloneable {
 	/**
 	 * 活動起日
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
 
 	/**
 	 * 活動迄日
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
 
 	/**
 	 * 錄取通知日期
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date enrollNotice;
 
 	/**
 	 * 行前通知日期
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dueNotice;
 	
 	public Sessions(){
@@ -111,6 +118,11 @@ public class Sessions implements Serializable, Cloneable {
 
 	public void setDueNotice(Date dueNotice) {
 		this.dueNotice = dueNotice;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }
