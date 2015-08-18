@@ -14,7 +14,22 @@ public class Applicants implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer applicantsId;
+	
+	/**
+	 * 活動名稱
+	 */
 	private Integer activityId;
+	
+	/**
+	 * 場次
+	 */
+	private Integer sessionsId;
+	
+	/**
+	 * 錄取狀態
+	 */
+	private char confirm;
+
 	private String fullName;
 	private String nationalIdNumber;
 
@@ -43,57 +58,31 @@ public class Applicants implements Serializable, Cloneable {
 	/**
 	 * 住宿 1:是 0:否
 	 */
-	private Integer stay;
+	private char stay;
 
-	/**
-	 * 場次
-	 */
-	private Integer sessionsId;
-
+	
 	/**
 	 * 接送選項 1:火車站 2:高鐵站 3:自行前往
 	 */
-	private Integer pickUp;
+	private char pickUp;
+	
+	/**
+	 * 性別 1:男 2:女
+	 */
+	private char gender;
+
+	/**
+	 * 1:葷 2:素
+	 */
+	private char meals;
 
 	/**
 	 * 報名日期
 	 */
 	private Date applicantsDate;
-
-	/**
-	 * 性別 1:男 2:女
-	 */
-	private Integer gender;
-
-	/**
-	 * 1:葷 2:素
-	 */
-	private Integer meals;
 	
 	public Applicants(){
 		
-	}
-
-	public Applicants(Integer applicantsId, Integer activityId,
-			String fullName, String nationalIdNumber, String organization,
-			String position, String tel, String cell, String email,
-			Integer stay, Integer sessionsId, Integer pickUp,
-			Date applicantsDate, Integer gender, Integer meals) {
-		this.applicantsId = applicantsId;
-		this.activityId = activityId;
-		this.fullName = fullName;
-		this.nationalIdNumber = nationalIdNumber;
-		this.organization = organization;
-		this.position = position;
-		this.tel = tel;
-		this.cell = cell;
-		this.email = email;
-		this.stay = stay;
-		this.sessionsId = sessionsId;
-		this.pickUp = pickUp;
-		this.applicantsDate = applicantsDate;
-		this.gender = gender;
-		this.meals = meals;
 	}
 
 	public Integer getApplicantsId() {
@@ -110,6 +99,22 @@ public class Applicants implements Serializable, Cloneable {
 
 	public void setActivityId(Integer activityId) {
 		this.activityId = activityId;
+	}
+
+	public Integer getSessionsId() {
+		return sessionsId;
+	}
+
+	public void setSessionsId(Integer sessionsId) {
+		this.sessionsId = sessionsId;
+	}
+
+	public char getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(char confirm) {
+		this.confirm = confirm;
 	}
 
 	public String getFullName() {
@@ -168,28 +173,36 @@ public class Applicants implements Serializable, Cloneable {
 		this.email = email;
 	}
 
-	public Integer getStay() {
+	public char getStay() {
 		return stay;
 	}
 
-	public void setStay(Integer stay) {
+	public void setStay(char stay) {
 		this.stay = stay;
 	}
 
-	public Integer getSessionsId() {
-		return sessionsId;
-	}
-
-	public void setSessionsId(Integer sessionsId) {
-		this.sessionsId = sessionsId;
-	}
-
-	public Integer getPickUp() {
+	public char getPickUp() {
 		return pickUp;
 	}
 
-	public void setPickUp(Integer pickUp) {
+	public void setPickUp(char pickUp) {
 		this.pickUp = pickUp;
+	}
+
+	public char getGender() {
+		return gender;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public char getMeals() {
+		return meals;
+	}
+
+	public void setMeals(char meals) {
+		this.meals = meals;
 	}
 
 	public Date getApplicantsDate() {
@@ -200,20 +213,5 @@ public class Applicants implements Serializable, Cloneable {
 		this.applicantsDate = applicantsDate;
 	}
 
-	public Integer getGender() {
-		return gender;
-	}
-
-	public void setGender(Integer gender) {
-		this.gender = gender;
-	}
-
-	public Integer getMeals() {
-		return meals;
-	}
-
-	public void setMeals(Integer meals) {
-		this.meals = meals;
-	}
 
 }
