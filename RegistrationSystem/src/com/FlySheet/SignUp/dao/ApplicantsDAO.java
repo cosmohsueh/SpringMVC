@@ -22,7 +22,7 @@ public class ApplicantsDAO {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public Applicants findByApplicantsId(Long applicantsId) throws SQLException {
+	public Applicants findApplicantsById(Integer applicantsId) throws SQLException {
 		String sql = "SELECT * FROM APPLICANTS WHERE APPLICANTS_ID=" + applicantsId;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Applicants>() {
 
@@ -33,6 +33,8 @@ public class ApplicantsDAO {
 					Applicants applicants = new Applicants();
 					applicants.setApplicantsId(rs.getInt("APPLICANTS_ID"));
 					applicants.setActivityId(rs.getInt("ACTIVITY_ID"));
+					applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
+					applicants.setConfirm(rs.getString("CONFIRM").charAt(0));
 					applicants.setFullName(rs.getString("FULL_NAME"));
 					applicants.setNationalIdNumber(rs.getString("NATIONAL_ID_NUMBER"));
 					applicants.setOrganization(rs.getString("ORGANIZATION"));
@@ -40,12 +42,11 @@ public class ApplicantsDAO {
 					applicants.setTel(rs.getString("TEL"));
 					applicants.setCell(rs.getString("CELL"));
 					applicants.setEmail(rs.getString("EMAIL"));
-					applicants.setStay(rs.getInt("STAY"));
-					applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
-					applicants.setPickUp(rs.getInt("PICK_UP"));
+					applicants.setStay(rs.getString("STAY").charAt(0));
+					applicants.setPickUp(rs.getString("PICK_UP").charAt(0));
+					applicants.setGender(rs.getString("GENDER").charAt(0));
+					applicants.setMeals(rs.getString("MEALS").charAt(0));
 					applicants.setApplicantsDate(rs.getDate("APPLICANTS_DATE"));
-					applicants.setGender(rs.getInt("GENDER"));
-					applicants.setMeals(rs.getInt("MEALS"));
 					return applicants;
 				}
 
@@ -65,6 +66,10 @@ public class ApplicantsDAO {
 				Applicants applicants = new Applicants();
 				applicants.setApplicantsId(rs.getInt("APPLICANTS_ID"));
 				applicants.setActivityId(rs.getInt("ACTIVITY_ID"));
+				applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
+				if(rs.getString("CONFIRM") != null){
+					applicants.setConfirm(rs.getString("CONFIRM").charAt(0));
+				}
 				applicants.setFullName(rs.getString("FULL_NAME"));
 				applicants.setNationalIdNumber(rs.getString("NATIONAL_ID_NUMBER"));
 				applicants.setOrganization(rs.getString("ORGANIZATION"));
@@ -72,12 +77,44 @@ public class ApplicantsDAO {
 				applicants.setTel(rs.getString("TEL"));
 				applicants.setCell(rs.getString("CELL"));
 				applicants.setEmail(rs.getString("EMAIL"));
-				applicants.setStay(rs.getInt("STAY"));
-				applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
-				applicants.setPickUp(rs.getInt("PICK_UP"));
+				applicants.setStay(rs.getString("STAY").charAt(0));
+				applicants.setPickUp(rs.getString("PICK_UP").charAt(0));
+				applicants.setGender(rs.getString("GENDER").charAt(0));
+				applicants.setMeals(rs.getString("MEALS").charAt(0));
 				applicants.setApplicantsDate(rs.getDate("APPLICANTS_DATE"));
-				applicants.setGender(rs.getInt("GENDER"));
-				applicants.setMeals(rs.getInt("MEALS"));
+				return applicants;
+			}
+
+		});
+		return activityList;
+	}
+	
+	public List<Applicants> findApplicantsBySessionsId(Integer sessionsId) throws SQLException {
+		List<Applicants> activityList = new ArrayList<Applicants>();
+		String sql = "SELECT * FROM APPLICANTS WHERE SESSIONS_ID=" + sessionsId;
+		activityList = jdbcTemplate.query(sql, new RowMapper<Applicants>() {
+
+			@Override
+			public Applicants mapRow(ResultSet rs, int num) throws SQLException {
+				Applicants applicants = new Applicants();
+				applicants.setApplicantsId(rs.getInt("APPLICANTS_ID"));
+				applicants.setActivityId(rs.getInt("ACTIVITY_ID"));
+				applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
+				if(rs.getString("CONFIRM") != null){
+					applicants.setConfirm(rs.getString("CONFIRM").charAt(0));
+				}
+				applicants.setFullName(rs.getString("FULL_NAME"));
+				applicants.setNationalIdNumber(rs.getString("NATIONAL_ID_NUMBER"));
+				applicants.setOrganization(rs.getString("ORGANIZATION"));
+				applicants.setPosition(rs.getString("POSITION"));
+				applicants.setTel(rs.getString("TEL"));
+				applicants.setCell(rs.getString("CELL"));
+				applicants.setEmail(rs.getString("EMAIL"));
+				applicants.setStay(rs.getString("STAY").charAt(0));
+				applicants.setPickUp(rs.getString("PICK_UP").charAt(0));
+				applicants.setGender(rs.getString("GENDER").charAt(0));
+				applicants.setMeals(rs.getString("MEALS").charAt(0));
+				applicants.setApplicantsDate(rs.getDate("APPLICANTS_DATE"));
 				return applicants;
 			}
 
@@ -86,33 +123,30 @@ public class ApplicantsDAO {
 	}
 
 	public void save(Applicants applicants) {
-		String sql = "INSERT INTO APPLICANTS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sql, applicants.getApplicantsId(),
-				applicants.getActivityId(), applicants.getFullName(),
-				applicants.getNationalIdNumber(), applicants.getOrganization(),
-				applicants.getPosition(), applicants.getTel(),
-				applicants.getCell(), applicants.getEmail(),
-				applicants.getStay(), applicants.getSessionsId(),
-				applicants.getPickUp(), applicants.getApplicantsDate(),
-				applicants.getGender(), applicants.getMeals());
+		String sql = "INSERT INTO APPLICANTS (ACTIVITY_ID, SESSIONS_ID, CONFIRM, FULL_NAME, "
+				+ "NATIONAL_ID_NUMBER, ORGANIZATION, POSITION, TEL, CELL, EMAIL, STAY, PICK_UP, "
+				+ "GENDER, MEALS, APPLICANTS_DATE) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, applicants.getActivityId(), applicants.getSessionsId(), applicants.getConfirm(),
+				applicants.getFullName(), applicants.getNationalIdNumber(), applicants.getOrganization(),
+				applicants.getPosition(), applicants.getTel(), applicants.getCell(), applicants.getEmail(),
+				applicants.getStay(), applicants.getPickUp(), applicants.getGender(), applicants.getMeals(),
+				applicants.getApplicantsDate());
 	}
 
 	public void update(Applicants applicants) {
-		String sql = "UPDATE APPLICANTS SET ACTIVITY_ID=?, FULL_NAME=?, NATIONAL_ID_NUMBER=?, ORGANIZATION=?, "
-				+ "POSITION=?, TEL=?, CELL=?, EMAIL=?, STAY=?, SESSIONS_ID=?, PICK_UP=?, APPLICANTS_DATE=?, "
-				+ "GENDER=?, MEALS=? WHERE APPLICANTS_ID=?";
-		jdbcTemplate.update(sql, applicants.getActivityId(),
-				applicants.getFullName(), applicants.getNationalIdNumber(),
-				applicants.getOrganization(), applicants.getPosition(),
-				applicants.getTel(), applicants.getCell(),
-				applicants.getEmail(), applicants.getStay(),
-				applicants.getSessionsId(), applicants.getPickUp(),
-				applicants.getApplicantsDate(), applicants.getGender(),
-				applicants.getMeals(), applicants.getApplicantsId());
+		String sql = "UPDATE APPLICANTS SET ACTIVITY_ID=?, SESSIONS_ID=?, CONFIRM=?, FULL_NAME=?, "
+				+ "NATIONAL_ID_NUMBER=?, ORGANIZATION=?, POSITION=?, TEL=?, CELL=?, EMAIL=?, STAY=?, "
+				+ "PICK_UP=?, GENDER=?, MEALS=?, APPLICANTS_DATE=? WHERE APPLICANTS_ID=?";
+		jdbcTemplate.update(sql, applicants.getActivityId(), applicants.getSessionsId(), applicants.getConfirm(),
+				applicants.getFullName(), applicants.getNationalIdNumber(), applicants.getOrganization(),
+				applicants.getPosition(), applicants.getTel(), applicants.getCell(), applicants.getEmail(),
+				applicants.getStay(), applicants.getPickUp(), applicants.getGender(), applicants.getMeals(),
+				applicants.getApplicantsDate(), applicants.getApplicantsId());
 	}
 
-	public void delete(Applicants activity) {
+	public void delete(Integer applicantsId) {
 		String sql = "DELETE FROM APPLICANTS WHERE APPLICANTS_ID=?";
-		jdbcTemplate.update(sql, activity.getApplicantsId());
+		jdbcTemplate.update(sql, applicantsId);
 	}
 }

@@ -48,6 +48,28 @@ public class SessionsDAO {
 
 		});
 	}
+	
+	public List<Sessions> findByActivityId(Integer activityId) throws SQLException {
+		List<Sessions> noticeTemplateList = new ArrayList<Sessions>();
+		String sql = "SELECT * FROM SESSIONS WHERE ACTIVITY_ID=" + activityId;
+		noticeTemplateList = jdbcTemplate.query(sql, new RowMapper<Sessions>() {
+
+			@Override
+			public Sessions mapRow(ResultSet rs, int num) throws SQLException {
+				Sessions sessions = new Sessions();
+				sessions.setSessionsId(rs.getInt("SESSIONS_ID"));
+				sessions.setActivityId(rs.getInt("ACTIVITY_ID"));
+				sessions.setSessionsName(rs.getString("SESSIONS_NAME"));
+				sessions.setStartDate(rs.getDate("START_DATE"));
+				sessions.setEndDate(rs.getDate("END_DATE"));
+				sessions.setEnrollNotice(rs.getDate("ENROLL_NOTICE"));
+				sessions.setDueNotice(rs.getDate("DUE_NOTICE"));
+				return sessions;
+			}
+
+		});
+		return noticeTemplateList;
+	}
 
 	public List<Sessions> findAll() throws SQLException {
 		List<Sessions> noticeTemplateList = new ArrayList<Sessions>();

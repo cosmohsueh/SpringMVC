@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.FlySheet.SignUp.dao.ActivityDAO;
 import com.FlySheet.SignUp.dao.SessionsDAO;
 import com.FlySheet.SignUp.model.SessionsModel;
 
@@ -19,12 +18,19 @@ public class SessionsService {
 
 	@Autowired
 	private SessionsDAO sessionsDAO;
-	@Autowired
-	private ActivityDAO activityDAO;
 	
 	public Sessions findSessionsById(Integer sessionsId){
 		try {
 			return sessionsDAO.findById(sessionsId);
+		} catch (SQLException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+		return null;
+	}
+	
+	public List<Sessions> findSessionsByActivityId(Integer activityId){
+		try {
+			return sessionsDAO.findByActivityId(activityId);
 		} catch (SQLException e) {
 			LOGGER.error(e.getMessage(), e);
 		}
