@@ -34,7 +34,7 @@ public class ApplicantsDAO {
 					applicants.setApplicantsId(rs.getInt("APPLICANTS_ID"));
 					applicants.setActivityId(rs.getInt("ACTIVITY_ID"));
 					applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
-					applicants.setConfirm(rs.getString("CONFIRM").charAt(0));
+					applicants.setConfirm(rs.getString("CONFIRM"));
 					applicants.setFullName(rs.getString("FULL_NAME"));
 					applicants.setNationalIdNumber(rs.getString("NATIONAL_ID_NUMBER"));
 					applicants.setOrganization(rs.getString("ORGANIZATION"));
@@ -42,10 +42,10 @@ public class ApplicantsDAO {
 					applicants.setTel(rs.getString("TEL"));
 					applicants.setCell(rs.getString("CELL"));
 					applicants.setEmail(rs.getString("EMAIL"));
-					applicants.setStay(rs.getString("STAY").charAt(0));
-					applicants.setPickUp(rs.getString("PICK_UP").charAt(0));
-					applicants.setGender(rs.getString("GENDER").charAt(0));
-					applicants.setMeals(rs.getString("MEALS").charAt(0));
+					applicants.setStay(rs.getString("STAY"));
+					applicants.setPickUp(rs.getString("PICK_UP"));
+					applicants.setGender(rs.getString("GENDER"));
+					applicants.setMeals(rs.getString("MEALS"));
 					applicants.setApplicantsDate(rs.getDate("APPLICANTS_DATE"));
 					return applicants;
 				}
@@ -67,9 +67,7 @@ public class ApplicantsDAO {
 				applicants.setApplicantsId(rs.getInt("APPLICANTS_ID"));
 				applicants.setActivityId(rs.getInt("ACTIVITY_ID"));
 				applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
-				if(rs.getString("CONFIRM") != null){
-					applicants.setConfirm(rs.getString("CONFIRM").charAt(0));
-				}
+				applicants.setConfirm(rs.getString("CONFIRM"));
 				applicants.setFullName(rs.getString("FULL_NAME"));
 				applicants.setNationalIdNumber(rs.getString("NATIONAL_ID_NUMBER"));
 				applicants.setOrganization(rs.getString("ORGANIZATION"));
@@ -77,10 +75,10 @@ public class ApplicantsDAO {
 				applicants.setTel(rs.getString("TEL"));
 				applicants.setCell(rs.getString("CELL"));
 				applicants.setEmail(rs.getString("EMAIL"));
-				applicants.setStay(rs.getString("STAY").charAt(0));
-				applicants.setPickUp(rs.getString("PICK_UP").charAt(0));
-				applicants.setGender(rs.getString("GENDER").charAt(0));
-				applicants.setMeals(rs.getString("MEALS").charAt(0));
+				applicants.setStay(rs.getString("STAY"));
+				applicants.setPickUp(rs.getString("PICK_UP"));
+				applicants.setGender(rs.getString("GENDER"));
+				applicants.setMeals(rs.getString("MEALS"));
 				applicants.setApplicantsDate(rs.getDate("APPLICANTS_DATE"));
 				return applicants;
 			}
@@ -100,9 +98,7 @@ public class ApplicantsDAO {
 				applicants.setApplicantsId(rs.getInt("APPLICANTS_ID"));
 				applicants.setActivityId(rs.getInt("ACTIVITY_ID"));
 				applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
-				if(rs.getString("CONFIRM") != null){
-					applicants.setConfirm(rs.getString("CONFIRM").charAt(0));
-				}
+				applicants.setConfirm(rs.getString("CONFIRM"));
 				applicants.setFullName(rs.getString("FULL_NAME"));
 				applicants.setNationalIdNumber(rs.getString("NATIONAL_ID_NUMBER"));
 				applicants.setOrganization(rs.getString("ORGANIZATION"));
@@ -110,10 +106,10 @@ public class ApplicantsDAO {
 				applicants.setTel(rs.getString("TEL"));
 				applicants.setCell(rs.getString("CELL"));
 				applicants.setEmail(rs.getString("EMAIL"));
-				applicants.setStay(rs.getString("STAY").charAt(0));
-				applicants.setPickUp(rs.getString("PICK_UP").charAt(0));
-				applicants.setGender(rs.getString("GENDER").charAt(0));
-				applicants.setMeals(rs.getString("MEALS").charAt(0));
+				applicants.setStay(rs.getString("STAY"));
+				applicants.setPickUp(rs.getString("PICK_UP"));
+				applicants.setGender(rs.getString("GENDER"));
+				applicants.setMeals(rs.getString("MEALS"));
 				applicants.setApplicantsDate(rs.getDate("APPLICANTS_DATE"));
 				return applicants;
 			}

@@ -112,6 +112,14 @@
 						<td>${applicants.applicantsDate}</td>
 					</tr>
 				</c:forEach>
+				<tr>
+					<td>
+						<spring:url var="downloadExcelUrl" value="/admin/downloadExcel"/>
+						<a href="${downloadExcelUrl}?sessionsId=${sessionsId}">
+							<spring:message code="admin.SignUpSearch.searchForm.print" text="print"/>
+						</a>
+					</td>
+				</tr>
 			</table>
 		</c:if>
 	</div>
@@ -122,6 +130,11 @@
 		$.getJSON('${ActivityJson}', 
 		function(data) {
 			var html = '<option value=""></option>';
+			data.sort(function(a,b){
+			    a = a.activityId;
+			    b = b.activityId;
+			    return a-b;
+			});
 			var len = data.length;
 			for ( var i = 0; i < len; i++) {
 				html += '<option value="' + data[i].activityId + '">'
@@ -135,6 +148,11 @@
 				activityId : $(this).val()
 			}, function(data) {
 				var html = '<option value=""></option>';
+				data.sort(function(a,b){
+				    a = a.sessionsId;
+				    b = b.sessionsId;
+				    return a-b;
+				});
 				var len = data.length;
 				for ( var i = 0; i < len; i++) {
 					html += '<option value="' + data[i].sessionsId + '">'

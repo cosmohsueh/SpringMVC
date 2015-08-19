@@ -28,7 +28,7 @@ public class Applicants implements Serializable, Cloneable {
 	/**
 	 * 錄取狀態
 	 */
-	private char confirm;
+	private String confirm;
 
 	private String fullName;
 	private String nationalIdNumber;
@@ -58,23 +58,23 @@ public class Applicants implements Serializable, Cloneable {
 	/**
 	 * 住宿 1:是 0:否
 	 */
-	private char stay;
+	private String stay;
 
 	
 	/**
 	 * 接送選項 1:火車站 2:高鐵站 3:自行前往
 	 */
-	private char pickUp;
+	private String pickUp;
 	
 	/**
 	 * 性別 1:男 2:女
 	 */
-	private char gender;
+	private String gender;
 
 	/**
 	 * 1:葷 2:素
 	 */
-	private char meals;
+	private String meals;
 
 	/**
 	 * 報名日期
@@ -109,11 +109,11 @@ public class Applicants implements Serializable, Cloneable {
 		this.sessionsId = sessionsId;
 	}
 
-	public char getConfirm() {
+	public String getConfirm() {
 		return confirm;
 	}
 
-	public void setConfirm(char confirm) {
+	public void setConfirm(String confirm) {
 		this.confirm = confirm;
 	}
 
@@ -173,35 +173,35 @@ public class Applicants implements Serializable, Cloneable {
 		this.email = email;
 	}
 
-	public char getStay() {
+	public String getStay() {
 		return stay;
 	}
 
-	public void setStay(char stay) {
+	public void setStay(String stay) {
 		this.stay = stay;
 	}
 
-	public char getPickUp() {
+	public String getPickUp() {
 		return pickUp;
 	}
 
-	public void setPickUp(char pickUp) {
+	public void setPickUp(String pickUp) {
 		this.pickUp = pickUp;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public char getMeals() {
+	public String getMeals() {
 		return meals;
 	}
 
-	public void setMeals(char meals) {
+	public void setMeals(String meals) {
 		this.meals = meals;
 	}
 

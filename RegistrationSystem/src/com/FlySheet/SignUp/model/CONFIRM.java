@@ -2,18 +2,18 @@ package com.FlySheet.SignUp.model;
 
 public enum CONFIRM {
 
-	OK('1', "Y"), 
-	NOT('0', "N");
+	OK("Y", "1"), 
+	NOT("N", "0");
 
-	private char code;
+	private String code;
 	private String reason;
 
-	CONFIRM(char code, String reason) {
+	CONFIRM(String code, String reason) {
 		this.code = code;
 		this.reason = reason;
 	}
 
-	public char getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -21,9 +21,9 @@ public enum CONFIRM {
 		return reason;
 	}
 
-	public static CONFIRM valueOf(char code) {
+	public static CONFIRM valueOfByCode(String code) {
 		for (CONFIRM confirm : values()) {
-			if (confirm.getCode() == code) {
+			if (confirm.getCode().equalsIgnoreCase(code)) {
 				return confirm;
 			}
 		}

@@ -11,7 +11,7 @@
 		<a href='<spring:url value="/admin/SignUpSearch"/>'>
 			<spring:message code="admin.Maintain.Menu.SignUpSearch" text="SignUpSearch"/>
 		</a>
-		<a href='#'>
+		<a href='<spring:url value="/admin/SignUpVerify"/>'>
 			<spring:message code="admin.Maintain.Menu.SignUpVerify" text="SignUpVerify"/>
 		</a>
 		<a href='<spring:url value="/admin/Maintain/Users"/>'>
