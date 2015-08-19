@@ -47,4 +47,5 @@
 	<bean id="activityService" class="com.FlySheet.SignUp.service.ActivityService"/>
 	<bean id="sessionsService" class="com.FlySheet.SignUp.service.SessionsService"/>
 	<bean id="applicantsService" class="com.FlySheet.SignUp.service.ApplicantsService"/>
+	<bean id="noticeService" class="com.FlySheet.SignUp.service.NoticeService"/>
 </beans>

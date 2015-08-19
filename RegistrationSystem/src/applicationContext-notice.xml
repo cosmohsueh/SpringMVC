@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="noticeSchedule" class="com.FlySheet.SignUp.notice.NoticeSchedule"/>
+	<bean id="noticesHandler" class="com.FlySheet.SignUp.notice.NoticesHandler"/>
+	
+	<bean id="noticeCron" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="noticeSchedule" />
+		<property name="targetMethod" value="sendNotice" />
+	</bean>
+	
+	<bean id="noticeTask" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="noticeCron" />
+		<property name="cronExpression" value="0 0 8 * * ?" />
+	</bean>
+	
+	<bean id="noticeScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="noticeTask" />
+			</list>
+		</property>
+		<property name="schedulerName">
+			<value>noticeScheduler</value>
+		</property>
+	</bean>
+</beans>

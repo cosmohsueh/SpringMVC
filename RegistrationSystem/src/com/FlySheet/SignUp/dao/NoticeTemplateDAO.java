@@ -44,6 +44,30 @@ public class NoticeTemplateDAO {
 
 		});
 	}
+	
+	public NoticeTemplate findBySessionIdAndNoticeType(Integer sessionId, Integer noticeType) throws SQLException {
+		String sql = "SELECT * FROM NOTICE_TEMPLATE WHERE SESSION_ID=" + sessionId + 
+				" AND NOTICE_TYPE=" + noticeType;
+		return jdbcTemplate.query(sql, new ResultSetExtractor<NoticeTemplate>() {
+
+			@Override
+			public NoticeTemplate extractData(ResultSet rs)
+					throws SQLException, DataAccessException {
+				if (rs.next()) {
+					NoticeTemplate noticeTemplate = new NoticeTemplate();
+					noticeTemplate.setNoticeId(rs.getInt("NOTICE_ID"));
+					noticeTemplate.setSessionId(rs.getInt("SESSION_ID"));
+					noticeTemplate.setNoticeType(rs.getInt("NOTICE_TYPE"));
+					noticeTemplate.setSubject(rs.getString("SUBJECT"));
+					noticeTemplate.setContent(rs.getString("CONTENT"));
+					return noticeTemplate;
+				}
+
+				return null;
+			}
+
+		});
+	}
 
 	public List<NoticeTemplate> findAll() throws SQLException {
 		List<NoticeTemplate> noticeTemplateList = new ArrayList<NoticeTemplate>();

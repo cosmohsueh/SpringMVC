@@ -7,6 +7,8 @@
 	<import resource="database.xml"/>
 	
 	<import resource="applicationContext-security.xml"/>
+	
+	<import resource="applicationContext-notice.xml"/>
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
