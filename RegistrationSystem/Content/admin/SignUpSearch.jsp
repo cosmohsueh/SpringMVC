@@ -45,13 +45,19 @@
 		<c:if test="${not empty applicantsList}">
 			<table>
 				<tr>
+					<td colspan="2">
+						<spring:message code="admin.SignUpSearch.activityName" text="activityName"/>:
+					</td>
+					<th colspan="2">${activityName}</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<spring:message code="admin.SignUpSearch.sessionsName" text="sessionsName"/>:
+					</td>
+					<th colspan="2">${sessionsName}</th>
+				</tr>
+				<tr>
 					<td></td>
-					<td>
-						<spring:message code="admin.SignUpSearch.activityName" text="activityName"/>
-					</td>
-					<td>
-						<spring:message code="admin.SignUpSearch.sessionsName" text="sessionsName"/>
-					</td>
 					<td>
 						<spring:message code="admin.SignUpSearch.confirm" text="confirm"/>
 					</td>
@@ -94,10 +100,8 @@
 				</tr>
 				<c:forEach var="applicants" items="${applicantsList}" varStatus="status">
 					<tr>
-						<td></td>
-						<td>${applicants.activityId}</td>
-						<td>${applicants.sessionsId}</td>
-						<td>${applicants.confirm}</td>
+						<td>${status.count}</td>
+						<td>${applicants.confirmEnum}</td>
 						<td>${applicants.fullName}</td>
 						<td>${applicants.nationalIdNumber}</td>
 						<td>${applicants.organization}</td>
@@ -105,10 +109,10 @@
 						<td>${applicants.tel}</td>
 						<td>${applicants.cell}</td>
 						<td>${applicants.email}</td>
-						<td>${applicants.stay}</td>
-						<td>${applicants.pickUp}</td>
-						<td>${applicants.gender}</td>
-						<td>${applicants.meals}</td>
+						<td>${applicants.stayEnum}</td>
+						<td>${applicants.pickUpEnum}</td>
+						<td>${applicants.genderEnum}</td>
+						<td>${applicants.mealsEnum}</td>
 						<td>${applicants.applicantsDate}</td>
 					</tr>
 				</c:forEach>

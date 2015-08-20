@@ -1,17 +1,17 @@
 package com.FlySheet.SignUp.model;
 
 public enum MEALS {
-	A('1', "葷"), B('2', "素");
+	A("1", "葷"), B("2", "素");
 
-	private char code;
+	private String code;
 	private String reason;
 
-	MEALS(char code, String reason) {
+	MEALS(String code, String reason) {
 		this.code = code;
 		this.reason = reason;
 	}
 
-	public char getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -19,12 +19,12 @@ public enum MEALS {
 		return reason;
 	}
 
-	public static MEALS valueOf(char code) {
+	public static String getReasonByCode(String code) {
 		for (MEALS meals : values()) {
-			if (meals.getCode() == code) {
-				return meals;
+			if (meals.getCode().equals(code)) {
+				return meals.getReason();
 			}
 		}
-		return null;
+		return "";
 	}
 }

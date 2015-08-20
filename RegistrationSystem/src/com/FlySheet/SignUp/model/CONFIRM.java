@@ -2,8 +2,8 @@ package com.FlySheet.SignUp.model;
 
 public enum CONFIRM {
 
-	OK("Y", "1"), 
-	NOT("N", "0");
+	OK("1", "Y"), 
+	NOT("0", "N");
 
 	private String code;
 	private String reason;
@@ -21,12 +21,21 @@ public enum CONFIRM {
 		return reason;
 	}
 
-	public static CONFIRM valueOfByCode(String code) {
+	public static String getReasonByCode(String code) {
 		for (CONFIRM confirm : values()) {
 			if (confirm.getCode().equalsIgnoreCase(code)) {
-				return confirm;
+				return confirm.getReason();
 			}
 		}
-		return null;
+		return "";
+	}
+	
+	public static String getReasonByReason(String reason) {
+		for (CONFIRM confirm : values()) {
+			if (confirm.getReason().equalsIgnoreCase(reason)) {
+				return confirm.getCode();
+			}
+		}
+		return "";
 	}
 }

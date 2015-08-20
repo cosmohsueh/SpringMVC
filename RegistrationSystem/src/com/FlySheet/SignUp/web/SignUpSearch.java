@@ -25,7 +25,7 @@ import data.Sessions;
 @Controller
 @RequestMapping(value = "/admin")
 public class SignUpSearch {
-	
+
 	@Autowired
 	private ActivityService activityService;
 	@Autowired
@@ -34,34 +34,53 @@ public class SignUpSearch {
 	private ApplicantsService applicantsService;
 
 	@RequestMapping(value = "/SignUpSearch", method = RequestMethod.GET)
-	public ModelAndView index(){
+	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("admin/SignUpSearch");
 		model.addObject("signUpSearchForm", new SignUpSearchModel());
 		return model;
 	}
-	
-	@RequestMapping(value = "/ActivityJson", method = RequestMethod.GET, headers="Accept=application/json")
-	public @ResponseBody Set<Activity> getActivityJson(){
+
+	@RequestMapping(value = "/ActivityJson", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody Set<Activity> getActivityJson() {
 		return new HashSet<Activity>(activityService.findAll());
 	}
-	
-	@RequestMapping(value = "/SessionsJson", method = RequestMethod.GET, headers="Accept=application/json")
-	public @ResponseBody Set<Sessions> getSessionsJson(@RequestParam Integer activityId){
-		return new HashSet<Sessions>(sessionsService.findSessionsByActivityId(activityId));
+
+	@RequestMapping(value = "/SessionsJson", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody Set<Sessions> getSessionsJson(
+			@RequestParam Integer activityId) {
+		return new HashSet<Sessions>(
+				sessionsService.findSessionsByActivityId(activityId));
 	}
-	
+
 	@RequestMapping(value = "/SignUpSearch", method = RequestMethod.POST)
-	public ModelAndView search(@ModelAttribute(value = "signUpSearchForm") SignUpSearchModel signUpSearchForm){
-		ModelAndView model = new ModelAndView();
-		model.addObject("sessionsId", signUpSearchForm.getSessionsId());
-		model.addObject("applicantsList", applicantsService.findApplicantsBySessionsId(signUpSearchForm.getSessionsId()));
+	public ModelAndView search(
+			@ModelAttribute(value = "signUpSearchForm") SignUpSearchModel signUpSearchForm) {
+		ModelAndView model = new ModelAndView("admin/SignUpSearch");
+		if (signUpSearchForm.getSessionsId() != null) {
+			model.addObject("sessionsId", signUpSearchForm.getSessionsId());
+			model.addObject("applicantsList", applicantsService
+					.findApplicantsBySessionsId(signUpSearchForm
+							.getSessionsId()));
+			model.addObject(
+					"activityName",
+					activityService.findActivityById(
+							signUpSearchForm.getActivityId()).getActivityName());
+			model.addObject(
+					"sessionsName",
+					sessionsService.findSessionsById(
+							signUpSearchForm.getSessionsId()).getSessionsName());
+		}
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
-	public ModelAndView downloadExcel(@RequestParam Integer sessionsId){
-		List<Applicants> applicantsList = applicantsService.findApplicantsBySessionsId(sessionsId);
-        
-        return new ModelAndView("excelView", "applicantsList", applicantsList);
+	public ModelAndView downloadExcel(@RequestParam Integer sessionsId) {
+		List<Applicants> applicantsList = applicantsService
+				.findApplicantsBySessionsId(sessionsId);
+		ModelAndView model = new ModelAndView("excelView");
+		model.addObject("applicantsList", applicantsList);
+		model.addObject("activityService", activityService);
+		model.addObject("sessionsService", sessionsService);
+		return model;
 	}
 }

@@ -2,17 +2,17 @@ package com.FlySheet.SignUp.model;
 
 public enum GENDER {
 
-	m('1', "男"), F('2', "女");
+	m("1", "男"), F("2", "女");
 
-	private char code;
+	private String code;
 	private String reason;
 
-	GENDER(char code, String reason) {
+	GENDER(String code, String reason) {
 		this.code = code;
 		this.reason = reason;
 	}
 
-	public char getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -20,12 +20,12 @@ public enum GENDER {
 		return reason;
 	}
 
-	public static GENDER valueOf(char code) {
+	public static String getReasonByCode(String code) {
 		for (GENDER gender : values()) {
-			if (gender.getCode() == code) {
-				return gender;
+			if (gender.getCode().equals(code)) {
+				return gender.getReason();
 			}
 		}
-		return null;
+		return "";
 	}
 }

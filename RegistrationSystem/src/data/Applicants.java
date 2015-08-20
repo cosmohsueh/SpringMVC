@@ -3,6 +3,12 @@ package data;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.FlySheet.SignUp.model.CONFIRM;
+import com.FlySheet.SignUp.model.GENDER;
+import com.FlySheet.SignUp.model.MEALS;
+import com.FlySheet.SignUp.model.PICKUP;
+import com.FlySheet.SignUp.model.STAY;
+
 /**
  * 報名者資訊
  * 
@@ -112,11 +118,15 @@ public class Applicants implements Serializable, Cloneable {
 	public String getConfirm() {
 		return confirm;
 	}
+	
+	public String getConfirmEnum(){
+		return CONFIRM.getReasonByCode(confirm);
+	}
 
 	public void setConfirm(String confirm) {
 		this.confirm = confirm;
 	}
-
+	
 	public String getFullName() {
 		return fullName;
 	}
@@ -176,6 +186,10 @@ public class Applicants implements Serializable, Cloneable {
 	public String getStay() {
 		return stay;
 	}
+	
+	public String getStayEnum(){
+		return STAY.getReasonByCode(stay);
+	}
 
 	public void setStay(String stay) {
 		this.stay = stay;
@@ -183,6 +197,10 @@ public class Applicants implements Serializable, Cloneable {
 
 	public String getPickUp() {
 		return pickUp;
+	}
+	
+	public String getPickUpEnum(){
+		return PICKUP.getReasonByCode(pickUp);
 	}
 
 	public void setPickUp(String pickUp) {
@@ -192,6 +210,10 @@ public class Applicants implements Serializable, Cloneable {
 	public String getGender() {
 		return gender;
 	}
+	
+	public String getGenderEnum(){
+		return GENDER.getReasonByCode(gender);
+	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
@@ -199,6 +221,10 @@ public class Applicants implements Serializable, Cloneable {
 
 	public String getMeals() {
 		return meals;
+	}
+	
+	public String getMealsEnum(){
+		return MEALS.getReasonByCode(meals);
 	}
 
 	public void setMeals(String meals) {

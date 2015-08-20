@@ -15,17 +15,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
 
+import com.FlySheet.SignUp.model.CONFIRM;
 import com.FlySheet.SignUp.model.GENDER;
 import com.FlySheet.SignUp.model.MEALS;
 import com.FlySheet.SignUp.model.PICKUP;
 import com.FlySheet.SignUp.model.STAY;
+import com.FlySheet.SignUp.service.ActivityService;
+import com.FlySheet.SignUp.service.SessionsService;
 
+import data.Activity;
 import data.Applicants;
+import data.Sessions;
 
 public class ExcelBuilder extends AbstractExcelView{
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExcelBuilder.class);
-
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	protected void buildExcelDocument(Map<String, Object> model,
@@ -38,13 +43,18 @@ public class ExcelBuilder extends AbstractExcelView{
 		response.setHeader("Content-Disposition", "attachment; filename=\"Applicants_" + date + ".xls\"");
 		
 		List<Applicants> listBooks = (List<Applicants>) model.get("applicantsList");
+		ActivityService activityService = (ActivityService) model.get("activityService");
+		SessionsService sessionsService = (SessionsService) model.get("sessionsService");
+		
+		List<Activity> activityList = activityService.findAll();
+		List<Sessions> sessionsList = sessionsService.findAll();
 		
 		HSSFSheet sheet = workbook.createSheet();
 		sheet.setDefaultColumnWidth(10);
 		
         HSSFRow header = sheet.createRow(0);
         
-        header.createCell(0).setCellValue("");
+        header.createCell(0).setCellValue("報名序號");
         header.createCell(1).setCellValue("活動名稱");
         header.createCell(2).setCellValue("場次名稱");
         header.createCell(3).setCellValue("錄取狀態");
@@ -66,9 +76,27 @@ public class ExcelBuilder extends AbstractExcelView{
         for (Applicants applicants : listBooks) {
             HSSFRow aRow = sheet.createRow(rowCount++);
             aRow.createCell(0).setCellValue(applicants.getApplicantsId());
-            aRow.createCell(1).setCellValue(applicants.getActivityId());
-            aRow.createCell(2).setCellValue(applicants.getSessionsId());
-            aRow.createCell(3).setCellValue(applicants.getConfirm());
+            
+            String activityName = "";
+            if(activityList != null && activityList.size() > 0){
+            	for(Activity act: activityList){
+            		if(act.getActivityId() == applicants.getActivityId()){
+            			activityName = act.getActivityName();
+            		}
+            	}
+            }
+            aRow.createCell(1).setCellValue(activityName);
+            
+            String sessionsName = "";
+            if(sessionsList != null && sessionsList.size() > 0){
+            	for(Sessions sess: sessionsList){
+            		if(sess.getSessionsId() == applicants.getSessionsId()){
+            			sessionsName = sess.getSessionsName();
+            		}
+            	}
+            }
+            aRow.createCell(2).setCellValue(sessionsName);
+            aRow.createCell(3).setCellValue(CONFIRM.getReasonByCode(applicants.getConfirm()));
             aRow.createCell(4).setCellValue(applicants.getFullName());
             aRow.createCell(5).setCellValue(applicants.getNationalIdNumber());
             aRow.createCell(6).setCellValue(applicants.getOrganization());
@@ -76,10 +104,10 @@ public class ExcelBuilder extends AbstractExcelView{
             aRow.createCell(8).setCellValue(applicants.getTel());
             aRow.createCell(9).setCellValue(applicants.getCell());
             aRow.createCell(10).setCellValue(applicants.getEmail());
-            aRow.createCell(11).setCellValue(STAY.valueOf(applicants.getStay()).getReason());
-            aRow.createCell(12).setCellValue(PICKUP.valueOf(applicants.getPickUp()).getReason());
-            aRow.createCell(13).setCellValue(GENDER.valueOf(applicants.getGender()).getReason());
-            aRow.createCell(14).setCellValue(MEALS.valueOf(applicants.getMeals()).getReason());
+            aRow.createCell(11).setCellValue(STAY.getReasonByCode(applicants.getStay()));
+            aRow.createCell(12).setCellValue(PICKUP.getReasonByCode(applicants.getPickUp()));
+            aRow.createCell(13).setCellValue(GENDER.getReasonByCode(applicants.getGender()));
+            aRow.createCell(14).setCellValue(MEALS.getReasonByCode(applicants.getMeals()));
             aRow.createCell(15).setCellValue(formaterDashTime.format(applicants.getApplicantsDate()));
         }
 	}

@@ -2,17 +2,17 @@ package com.FlySheet.SignUp.model;
 
 public enum PICKUP {
 
-	A('1', "火車站"), B('2', "高鐵站"), C('3', "自行前往");
+	A("1", "火車站"), B("2", "高鐵站"), C("3", "自行前往");
 
-	private char code;
+	private String code;
 	private String reason;
 
-	PICKUP(char code, String reason) {
+	PICKUP(String code, String reason) {
 		this.code = code;
 		this.reason = reason;
 	}
 
-	public char getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -20,12 +20,12 @@ public enum PICKUP {
 		return reason;
 	}
 
-	public static PICKUP valueOf(char code) {
+	public static String getReasonByCode(String code) {
 		for (PICKUP pickup : values()) {
-			if (pickup.getCode() == code) {
-				return pickup;
+			if (pickup.getCode().equals(code)) {
+				return pickup.getReason();
 			}
 		}
-		return null;
+		return "";
 	}
 }
