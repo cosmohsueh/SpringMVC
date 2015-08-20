@@ -29,9 +29,13 @@
 					<td>
 						<spring:url var="editActivityUrl" value="/admin/Maintain/editActivity"/>
 						<spring:url var="delActivityUrl" value="/admin/Maintain/delActivity"/>
-						<a href="${editActivityUrl}?activityId=${activity.activityId}">Edit</a>
+						<a href="${editActivityUrl}?activityId=${activity.activityId}">
+							<spring:message code="admin.Maintain.Activity.edit" text="edit"/>
+						</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="${delActivityUrl}?activityId=${activity.activityId}">Delete</a>
+                        <a href="${delActivityUrl}?activityId=${activity.activityId}">
+                        	<spring:message code="admin.Maintain.Activity.delete" text="delete"/>
+						</a>
 					</td>
 				</tr>
 			</c:forEach>

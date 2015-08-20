@@ -19,15 +19,7 @@
 					<spring:message code="admin.Maintain.Users.UsersForm.username" text="username"/>:
 				</td>
 				<td>
-					<c:choose>
-						<c:when test="${empty usersForm.username}">
-							<form:input path="username"/>
-						</c:when>
-						<c:otherwise>
-							<form:hidden path="username"/>
-							${usersForm.username}
-						</c:otherwise>
-					</c:choose>
+					<form:input path="username" readonly="${not empty usersForm.username}"/>
 				</td>
 			</tr>
 			<tr>
