@@ -22,7 +22,7 @@ public class NoticeTemplateDAO {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public NoticeTemplate findByNoticeId(Long noticeId) throws SQLException {
+	public NoticeTemplate findByNoticeId(Integer noticeId) throws SQLException {
 		String sql = "SELECT * FROM NOTICE_TEMPLATE WHERE NOTICE_ID=" + noticeId;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<NoticeTemplate>() {
 

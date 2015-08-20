@@ -2,6 +2,8 @@ package data;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * 通知單範本
  * 
@@ -75,6 +77,11 @@ public class NoticeTemplate implements Serializable, Cloneable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

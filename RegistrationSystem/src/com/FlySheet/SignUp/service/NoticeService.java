@@ -42,6 +42,23 @@ public class NoticeService {
 		return null;
 	}
 	
+	public NoticeTemplate findTemplateById(Integer noticeId){
+		try {
+			return noticeTemplateDAO.findByNoticeId(noticeId);
+		} catch (SQLException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+		return null;
+	}
+	
+	public void saveTemplate(NoticeTemplate noticeTemplate){
+		if(noticeTemplate.getNoticeId() == null){
+			noticeTemplateDAO.save(noticeTemplate);
+		}else {
+			noticeTemplateDAO.update(noticeTemplate);
+		}
+	}
+	
 	public void sendNotice(){
 		List<Sessions> sessionsList = sessionsService.findAll();
 		if(sessionsList != null && sessionsList.size() > 0){

@@ -10,19 +10,22 @@
 	<div>
 		<a href='<spring:url value="/admin/SignUpSearch"/>'>
 			<spring:message code="admin.Maintain.Menu.SignUpSearch" text="SignUpSearch"/>
-		</a>
+		</a>&nbsp;&nbsp;
 		<a href='<spring:url value="/admin/SignUpVerify"/>'>
 			<spring:message code="admin.Maintain.Menu.SignUpVerify" text="SignUpVerify"/>
-		</a>
+		</a>&nbsp;&nbsp;
 		<a href='<spring:url value="/admin/Maintain/Users"/>'>
 			<spring:message code="admin.Maintain.Menu.MaintainUsers" text="MaintainUsers"/>
-		</a>
+		</a>&nbsp;&nbsp;
 		<a href='<spring:url value="/admin/Maintain/Activity"/>'>
 			<spring:message code="admin.Maintain.Menu.MaintainActivity" text="MaintainActivity"/>
-		</a>
+		</a>&nbsp;&nbsp;
 		<a href='<spring:url value="/admin/Maintain/Sessions"/>'>
 			<spring:message code="admin.Maintain.Menu.MaintainSessions" text="MaintainSessions"/>
-		</a>
+		</a>&nbsp;&nbsp;
+		<a href='<spring:url value="/admin/Maintain/NoticeTemplate"/>'>
+			<spring:message code="admin.Maintain.Menu.MaintainNoticeTemplate" text="MaintainNoticeTemplate"/>
+		</a>&nbsp;&nbsp;
 		<a href='<spring:url value="/j_spring_security_logout"/>'>
 			<spring:message code="admin.Maintain.Menu.MaintainLogout" text="logout"/>
 		</a>
