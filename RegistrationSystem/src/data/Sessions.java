@@ -3,7 +3,10 @@ package data;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -17,35 +20,41 @@ public class Sessions implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer sessionsId;
+	
 	private Integer activityId;
 
 	/**
 	 * 場次名稱
 	 */
+	@NotEmpty
 	private String sessionsName;
 
 	/**
 	 * 活動起日
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
 	private Date startDate;
 
 	/**
 	 * 活動迄日
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
 	private Date endDate;
 
 	/**
 	 * 錄取通知日期
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
 	private Date enrollNotice;
 
 	/**
 	 * 行前通知日期
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
 	private Date dueNotice;
 	
 	public Sessions(){

@@ -30,7 +30,7 @@ public enum CONFIRM {
 		return "";
 	}
 	
-	public static String getReasonByReason(String reason) {
+	public static String getCodeByReason(String reason) {
 		for (CONFIRM confirm : values()) {
 			if (confirm.getReason().equalsIgnoreCase(reason)) {
 				return confirm.getCode();

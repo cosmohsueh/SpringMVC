@@ -75,7 +75,6 @@ public class ExcelBuilder extends AbstractExcelView{
         formaterDashTime = new SimpleDateFormat("yyyy-MM-dd");
         for (Applicants applicants : listBooks) {
             HSSFRow aRow = sheet.createRow(rowCount++);
-            aRow.createCell(0).setCellValue(applicants.getApplicantsId());
             
             String activityName = "";
             if(activityList != null && activityList.size() > 0){
@@ -85,7 +84,6 @@ public class ExcelBuilder extends AbstractExcelView{
             		}
             	}
             }
-            aRow.createCell(1).setCellValue(activityName);
             
             String sessionsName = "";
             if(sessionsList != null && sessionsList.size() > 0){
@@ -95,6 +93,8 @@ public class ExcelBuilder extends AbstractExcelView{
             		}
             	}
             }
+            aRow.createCell(0).setCellValue(applicants.getApplicantsId());
+            aRow.createCell(1).setCellValue(activityName);
             aRow.createCell(2).setCellValue(sessionsName);
             aRow.createCell(3).setCellValue(CONFIRM.getReasonByCode(applicants.getConfirm()));
             aRow.createCell(4).setCellValue(applicants.getFullName());

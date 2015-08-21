@@ -87,7 +87,7 @@ public class ApplicantsService {
 	
 	public void updateApplicants(Integer applicantsId, String confirmChar){
 		Applicants applicants = findApplicantsById(applicantsId);
-		applicants.setConfirm(CONFIRM.getReasonByReason(confirmChar));
+		applicants.setConfirm(CONFIRM.getCodeByReason(confirmChar));
 		saveApplicants(applicants);
 	}
 

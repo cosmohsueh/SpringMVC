@@ -3,6 +3,8 @@ package data;
 import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 使用者
@@ -19,17 +21,23 @@ public class Users implements Serializable, Cloneable {
 	/**
 	 * 帳號
 	 */
+	@NotEmpty
 	private String username;
 
 	/**
 	 * 密碼
 	 */
+	@NotEmpty
 	private String password;
 
 	/**
 	 * 使用者名稱
 	 */
+	@NotEmpty
 	private String userName;
+	
+	@Email
+	@NotEmpty
 	private String email;
 
 	public Users() {

@@ -17,12 +17,18 @@
 				<td>
 					<spring:message code="admin.Maintain.Activity.ActivityForm.activityName" text="activityName"/>:
 				</td>
-				<td><form:input path="activityName"/></td>
+				<td>
+					<form:input path="activityName"/>
+					<form:errors path="activityName"/>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 					<spring:message var="submitMsg" code="admin.Maintain.Activity.ActivityForm.submit" text="submit"/>
+					<spring:message var="cancelMsg" code="admin.Maintain.Activity.ActivityForm.cancel" text="cancel"/>
 					<input type="submit" value="${submitMsg}"/>
+					&nbsp;&nbsp;
+					<a href='<spring:url value="/admin/Maintain/Activity"/>'>${cancelMsg}</a>
 				</td>
 			</tr>
 		</table>

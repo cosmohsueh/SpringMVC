@@ -1,9 +1,12 @@
 package com.FlySheet.SignUp.web;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,9 +52,15 @@ public class MaintainActivity {
 	}
 	
 	@RequestMapping(value = "/saveActivity", method = RequestMethod.POST)
-	public ModelAndView saveActivity(@ModelAttribute Activity activityForm){
+	public ModelAndView saveActivity(@ModelAttribute("activityForm") @Valid Activity activityForm, BindingResult result){
 		LOGGER.debug(activityForm.toString());
-		activityService.saveActivity(activityForm);
-		return new ModelAndView("redirect:/admin/Maintain/Activity");
+		ModelAndView model = new ModelAndView();
+		if(result.hasErrors()){
+			model.setViewName("admin/Maintain/FormActivity");
+		}else{
+			activityService.saveActivity(activityForm);
+			model.setViewName("redirect:/admin/Maintain/Activity");
+		}
+		return model;
 	}
 }

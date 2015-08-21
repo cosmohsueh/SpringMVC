@@ -21,13 +21,19 @@
 				<td>
 					<spring:message code="admin.Maintain.Sessions.SessionsForm.activityName" text="activityName"/>:
 				</td>
-				<td><form:select path="activityId" items="${activityList}" itemLabel="activityName" itemValue="activityId"/></td>
+				<td>
+					<form:select path="activityId" items="${activityList}" itemLabel="activityName" itemValue="activityId"/>
+					<form:errors path="activityId"/>
+				</td>
 			</tr>
 			<tr>
 				<td>
 					<spring:message code="admin.Maintain.Sessions.SessionsForm.sessionsName" text="sessionsName"/>:
 				</td>
-				<td><form:input path="sessionsName"/></td>
+				<td>
+					<form:input path="sessionsName"/>
+					<form:errors path="sessionsName"/>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -35,30 +41,43 @@
 				</td>
 				<td>
 					<form:input path="startDate" />
+					<form:errors path="startDate"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<spring:message code="admin.Maintain.Sessions.SessionsForm.endDate" text="endDate"/>:
 				</td>
-				<td><form:input path="endDate"/></td>
+				<td>
+					<form:input path="endDate"/>
+					<form:errors path="endDate"/>
+				</td>
 			</tr>
 			<tr>
 				<td>
 					<spring:message code="admin.Maintain.Sessions.SessionsForm.enrollNotice" text="enrollNotice"/>:
 				</td>
-				<td><form:input path="enrollNotice"/></td>
+				<td>
+					<form:input path="enrollNotice"/>
+					<form:errors path="enrollNotice"/>
+				</td>
 			</tr>
 			<tr>
 				<td>
 					<spring:message code="admin.Maintain.Sessions.SessionsForm.dueNotice" text="dueNotice"/>:
 				</td>
-				<td><form:input path="dueNotice"/></td>
+				<td>
+					<form:input path="dueNotice"/>
+					<form:errors path="dueNotice"/>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<spring:message var="submitMsg" code="admin.Maintain.Users.UsersForm.submit" text="submit"/>
+					<spring:message var="submitMsg" code="admin.Maintain.Sessions.SessionsForm.submit" text="submit"/>
+					<spring:message var="cancelMsg" code="admin.Maintain.Sessions.SessionsForm.cancel" text="cancel"/>
 					<input type="submit" value="${submitMsg}"/>
+					&nbsp;&nbsp;
+					<a href='<spring:url value="/admin/Maintain/Sessions"/>'>${cancelMsg}</a>
 				</td>
 			</tr>
 		</table>

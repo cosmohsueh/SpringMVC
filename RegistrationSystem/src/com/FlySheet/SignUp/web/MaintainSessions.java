@@ -2,10 +2,13 @@ package com.FlySheet.SignUp.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,16 +47,25 @@ public class MaintainSessions {
 			sessions = sessionsService.findSessionsById(sessionsId);
 		}
 		model.addObject("sessionsForm", sessions);
-		List<Activity> activityList = activityService.findAll();
-		model.addObject("activityList", activityList);
 		return model;
 	}
 	
-	@RequestMapping(value = "/saveSessions", method = RequestMethod.POST)
-	public ModelAndView saveSessions(@ModelAttribute Sessions sessionsForm){
-		LOGGER.debug(sessionsForm.toString());
-		sessionsService.saveSessions(sessionsForm);
+	@RequestMapping(value = "/saveSessions")
+	public ModelAndView saveSessions(){
 		return new ModelAndView("redirect:/admin/Maintain/Sessions");
+	}
+	
+	@RequestMapping(value = "/saveSessions", method = RequestMethod.POST)
+	public ModelAndView saveSessions(@ModelAttribute("sessionsForm") @Valid Sessions sessionsForm, BindingResult result){
+		LOGGER.debug(sessionsForm.toString());
+		ModelAndView model = new ModelAndView();
+		if(result.hasErrors()){
+			model.setViewName("admin/Maintain/FormSessions");
+		}else{
+			sessionsService.saveSessions(sessionsForm);
+			model.setViewName("redirect:/admin/Maintain/Sessions");
+		}
+		return model;
 	}
 	
 	@RequestMapping(value = "/delSessions", method = RequestMethod.GET)
@@ -61,6 +73,11 @@ public class MaintainSessions {
 		LOGGER.debug("delSessions: " + sessionsId);
 		sessionsService.delSessions(sessionsId);
 		return new ModelAndView("redirect:/admin/Maintain/Sessions");
+	}
+	
+	@ModelAttribute("activityList")
+	public List<Activity> activityList(){
+		return activityService.findAll();
 	}
 	
 }

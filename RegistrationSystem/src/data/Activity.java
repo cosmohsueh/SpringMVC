@@ -3,6 +3,7 @@ package data;
 import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 報名活動主檔
@@ -22,6 +23,7 @@ public class Activity implements Serializable, Cloneable {
 	/**
 	 * 活動名稱
 	 */
+	@NotEmpty
 	private String activityName;
 
 	public Activity() {

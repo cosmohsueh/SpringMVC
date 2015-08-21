@@ -2,10 +2,13 @@ package com.FlySheet.SignUp.web;
 
 import java.sql.SQLException;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,11 +54,21 @@ public class MaintainUsers {
 		return model;
 	}
 	
+	@RequestMapping(value = "/saveUsers")
+	public ModelAndView saveUsers(){
+		return new ModelAndView("redirect:/admin/Maintain/Users");
+	}
+	
 	@RequestMapping(value = "/saveUsers", method = RequestMethod.POST)
-	public ModelAndView saveUsers(@ModelAttribute Users usersForm){
+	public ModelAndView saveUsers(@ModelAttribute("usersForm") @Valid Users usersForm, BindingResult result){
 		LOGGER.debug(usersForm.toString());
-		usersService.saveUsers(usersForm);
-		ModelAndView model = new ModelAndView("redirect:/admin/Maintain/Users");
+		ModelAndView model = new ModelAndView();
+		if(result.hasErrors()){
+			model.setViewName("admin/Maintain/FormUsers");
+		}else{
+			usersService.saveUsers(usersForm);
+			model.setViewName("redirect:/admin/Maintain/Users");
+		}
 		return model;
 	}
 }
