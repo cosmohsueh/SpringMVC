@@ -130,13 +130,8 @@ public class NoticeService {
 		}
 	}
 	
-	private void sendNotice(NoticeTemplate noticeTemp, Boolean confirm){
-		List<Applicants> appList = null;
-		if(confirm == null){
-			appList = applicantsService.findApplicantsBySessionsId(noticeTemp.getSessionId());
-		}else{
-			appList = applicantsService.findApplicantsBySessionsId(noticeTemp.getSessionId(), confirm);
-		}
+	private void sendNotice(NoticeTemplate noticeTemp, boolean confirm){
+		List<Applicants> appList = applicantsService.findApplicantsBySessionsId(noticeTemp.getSessionId(), confirm);
 		if(appList != null && appList.size() > 0){
 			for(Applicants app: appList){
 				try {
