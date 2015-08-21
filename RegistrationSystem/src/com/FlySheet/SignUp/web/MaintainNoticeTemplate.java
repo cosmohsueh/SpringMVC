@@ -30,8 +30,7 @@ public class MaintainNoticeTemplate {
 	@RequestMapping(value = "/NoticeTemplate")
 	public ModelAndView index(){
 		ModelAndView model = new ModelAndView("admin/Maintain/ViewNoticeTemplate");
-		model.addObject("noticeList", noticeService.findAll());
-		model.addObject("sessionsList", sessionsService.findAll());
+		model.addObject("templateModelList", noticeService.findTemplateModelView());
 		model.addObject("noticeTypeList", NOTICETYPE.values());
 		return model;
 	}
@@ -49,6 +48,15 @@ public class MaintainNoticeTemplate {
 		return model;
 	}
 	
+	@RequestMapping(value = "/resendNotice", method = RequestMethod.GET)
+	public ModelAndView resendNotice(@RequestParam Integer noticeId){
+		NoticeTemplate noticeTemp = noticeService.findTemplateById(noticeId);
+		if(noticeTemp != null){
+			noticeService.resendNotice(noticeTemp);
+		}
+		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate");
+	}
+	
 	@RequestMapping(value = "/saveTemplate", method = RequestMethod.GET)
 	public ModelAndView saveTemplate(){
 		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate");
@@ -60,4 +68,5 @@ public class MaintainNoticeTemplate {
 		noticeService.saveTemplate(templateForm);
 		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate");
 	}
+	
 }

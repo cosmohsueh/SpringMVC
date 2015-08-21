@@ -105,8 +105,8 @@ public final class Emailer extends Thread {
 
 			try {
 				Transport trans = session.getTransport(protocol);
-				trans.connect(server, Integer.parseInt(port), username, password);
-				Transport.send(message);
+//				trans.connect(server, Integer.parseInt(port), username, password);
+//				Transport.send(message);
 				trans.close();
 				LOGGER.info("mail to:" + to + " subject:" + subject + " content:" + htmlTextMessage);
 			} catch (javax.mail.MessagingException sslHandshake) {

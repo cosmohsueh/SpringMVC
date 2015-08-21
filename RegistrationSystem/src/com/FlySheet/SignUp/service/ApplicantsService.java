@@ -61,6 +61,15 @@ public class ApplicantsService {
 		return null;
 	}
 	
+	public List<Applicants> findApplicantsBySessionsId(Integer sessionsId, boolean confirm){
+		try {
+			return applicantsDAO.findApplicantsBySessionsIdWithConfirm(sessionsId, confirm);
+		} catch (SQLException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+		return null;
+	}
+	
 	public void delActivity(Integer applicantsId){
 		applicantsDAO.delete(applicantsId);
 	}

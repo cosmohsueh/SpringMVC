@@ -20,7 +20,8 @@
 					<spring:message code="admin.Maintain.NoticeTemplate.templateForm.sessionsName" text="sessionsName"/>:
 				</td>
 				<td>
-					<form:select path="sessionId" items="${sessionsList}" itemLabel="sessionsName" itemValue="sessionsId"/>
+					<form:select path="sessionId" items="${sessionsList}" itemLabel="sessionsName" itemValue="sessionsId" disabled="true" />
+					<form:hidden path="sessionId"/>
 				</td>
 			</tr>
 			<tr>
@@ -28,7 +29,8 @@
 					<spring:message code="admin.Maintain.NoticeTemplate.templateForm.noticeType" text="noticeType"/>:
 				</td>
 				<td>
-					<form:select path="noticeType" items="${noticeTypeList}" itemLabel="reason" itemValue="code"/>
+					<form:select path="noticeType" items="${noticeTypeList}" itemLabel="reason" itemValue="code" disabled="true"/>
+					<form:hidden path="noticeType"/>
 				</td>
 			</tr>
 			<tr>
@@ -48,8 +50,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td colspan="2">
 					<input type="submit" value='<spring:message code="admin.Maintain.NoticeTemplate.templateForm.submit" text="submit"/>' />
+					&nbsp;&nbsp;
+					<a href='<spring:url value="/admin/Maintain/NoticeTemplate"/>'>
+						<spring:message code="admin.Maintain.NoticeTemplate.templateForm.cancel" text="cancel"/>
+					</a>
 				</td>
 			</tr>
 		</table>

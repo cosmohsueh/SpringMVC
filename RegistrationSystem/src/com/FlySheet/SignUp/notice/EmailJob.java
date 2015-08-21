@@ -24,7 +24,7 @@ public class EmailJob implements Job {
 			Emailer emailer = new Emailer();
 			emailer.setTo(applicants.getEmail());
 			emailer.setSubject(noticeTemp.getSubject());
-			emailer.setHtmlTextMessage(noticeTemp.getContent());
+			emailer.setHtmlTextMessage(String.format(noticeTemp.getContent(), applicants.getFullName()));
             emailer.sendEmail();
 		} catch (java.net.ConnectException connException) {
             throw new JobExecutionException(connException);

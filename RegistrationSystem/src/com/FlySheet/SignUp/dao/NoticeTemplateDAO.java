@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.FlySheet.SignUp.model.TemplateModel;
+
 import data.NoticeTemplate;
 
 public class NoticeTemplateDAO {
@@ -89,7 +91,38 @@ public class NoticeTemplateDAO {
 		});
 		return noticeTemplateList;
 	}
+	
+	public List<TemplateModel> findTemplateModelView() throws SQLException {
+		List<TemplateModel> templateModelList = new ArrayList<TemplateModel>();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT a.ACTIVITY_ID, a.ACTIVITY_NAME, s.SESSIONS_ID, s.SESSIONS_NAME, s.ENROLL_NOTICE, s.DUE_NOTICE, n.NOTICE_ID, n.NOTICE_TYPE, n.SUBJECT \n")
+			.append("FROM activity a \n")
+			.append("LEFT JOIN sessions s ON a.ACTIVITY_ID = s.ACTIVITY_ID \n")
+			.append("LEFT JOIN notice_template n ON s.SESSIONS_ID = n.SESSION_ID \n")
+			.append("WHERE n.NOTICE_ID IS NOT NULL");
+		
+		templateModelList = jdbcTemplate.query(sql.toString(), new RowMapper<TemplateModel>(){
 
+			@Override
+			public TemplateModel mapRow(ResultSet rs, int num)
+					throws SQLException {
+				TemplateModel templateModel = new TemplateModel();
+				templateModel.setActivityId(rs.getInt("ACTIVITY_ID"));
+				templateModel.setActivityName(rs.getString("ACTIVITY_NAME"));
+				templateModel.setSessionsId(rs.getInt("SESSIONS_ID"));
+				templateModel.setSessionsName(rs.getString("SESSIONS_NAME"));
+				templateModel.setEnrollNotice(rs.getDate("ENROLL_NOTICE"));
+				templateModel.setDueNotice(rs.getDate("DUE_NOTICE"));
+				templateModel.setNoticeId(rs.getInt("NOTICE_ID"));
+				templateModel.setNoticeType(rs.getInt("NOTICE_TYPE"));
+				templateModel.setSubject(rs.getString("SUBJECT"));
+				return templateModel;
+			}
+			
+		});
+		return templateModelList;
+	}
+	
 	public void save(NoticeTemplate noticeTemplate) {
 		String sql = "INSERT INTO NOTICE_TEMPLATE VALUES(?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, noticeTemplate.getNoticeId(),

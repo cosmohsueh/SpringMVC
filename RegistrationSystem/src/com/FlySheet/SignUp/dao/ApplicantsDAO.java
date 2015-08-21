@@ -117,6 +117,42 @@ public class ApplicantsDAO {
 		});
 		return activityList;
 	}
+	
+	public List<Applicants> findApplicantsBySessionsIdWithConfirm(Integer sessionsId, boolean confirm) throws SQLException {
+		List<Applicants> activityList = new ArrayList<Applicants>();
+		String sql = "SELECT * FROM APPLICANTS WHERE SESSIONS_ID=" + sessionsId;
+		if(confirm){
+			sql += " AND CONFIRM = 1";
+		}else{
+			sql += " AND CONFIRM = 0";
+		}
+		activityList = jdbcTemplate.query(sql, new RowMapper<Applicants>() {
+
+			@Override
+			public Applicants mapRow(ResultSet rs, int num) throws SQLException {
+				Applicants applicants = new Applicants();
+				applicants.setApplicantsId(rs.getInt("APPLICANTS_ID"));
+				applicants.setActivityId(rs.getInt("ACTIVITY_ID"));
+				applicants.setSessionsId(rs.getInt("SESSIONS_ID"));
+				applicants.setConfirm(rs.getString("CONFIRM"));
+				applicants.setFullName(rs.getString("FULL_NAME"));
+				applicants.setNationalIdNumber(rs.getString("NATIONAL_ID_NUMBER"));
+				applicants.setOrganization(rs.getString("ORGANIZATION"));
+				applicants.setPosition(rs.getString("POSITION"));
+				applicants.setTel(rs.getString("TEL"));
+				applicants.setCell(rs.getString("CELL"));
+				applicants.setEmail(rs.getString("EMAIL"));
+				applicants.setStay(rs.getString("STAY"));
+				applicants.setPickUp(rs.getString("PICK_UP"));
+				applicants.setGender(rs.getString("GENDER"));
+				applicants.setMeals(rs.getString("MEALS"));
+				applicants.setApplicantsDate(rs.getDate("APPLICANTS_DATE"));
+				return applicants;
+			}
+
+		});
+		return activityList;
+	}
 
 	public void save(Applicants applicants) {
 		String sql = "INSERT INTO APPLICANTS (ACTIVITY_ID, SESSIONS_ID, CONFIRM, FULL_NAME, "

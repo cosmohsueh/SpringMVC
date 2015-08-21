@@ -11,10 +11,13 @@
 	<jsp:include page="../../border/head.jsp"/>
 	<h1>MaintainNoticeTemplate</h1>
 	<div>
-		<c:if test="${not empty noticeList}">
+		<c:if test="${not empty templateModelList}">
 			<table>
 				<tr>
 					<td></td>
+					<td>
+						<spring:message code="admin.Maintain.NoticeTemplate.activityName" text="activityName"/>
+					</td>
 					<td>
 						<spring:message code="admin.Maintain.NoticeTemplate.sessionsName" text="sessionsName"/>
 					</td>
@@ -25,25 +28,52 @@
 						<spring:message code="admin.Maintain.NoticeTemplate.subject" text="subject"/>
 					</td>
 					<td>
+						<spring:message code="admin.Maintain.NoticeTemplate.ExpectedToSendDate" text="ExpectedToSendDate"/>
+					</td>
+					<td>
 					</td>
 				</tr>
-				<c:forEach var="notice" items="${noticeList}" varStatus="status">
+				<c:forEach var="templateModel" items="${templateModelList}" varStatus="status">
 					<tr>
 						<td>${status.count}</td>
+						<td>${templateModel.activityName}</td>
+						<td>${templateModel.sessionsName}</td>
+						<td>${noticeTypeList[templateModel.noticeType-1].reason}</td>
+						<td>${templateModel.subject}</td>
 						<td>
-							<c:forEach var="sessions" items="${sessionsList}">
-								<c:if test="${sessions.sessionsId == notice.sessionId}">
-									${sessions.sessionsName}
-								</c:if>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${templateModel.noticeType == 2 || templateModel.noticeType == 3}">
+									${templateModel.enrollNotice}
+								</c:when>
+								<c:when test="${templateModel.noticeType == 4}">
+									${templateModel.dueNotice}
+								</c:when>
+							</c:choose>
 						</td>
-						<td>${noticeTypeList[notice.noticeType-1].reason}</td>
-						<td>${notice.subject}</td>
 						<td>
 							<spring:url var="editTemplateActionUrl" value="/admin/Maintain/editTemplate"/>
-							<a href="${editTemplateActionUrl}?noticeId=${notice.noticeId}">
+							<spring:url var="resendNoticeUrl" value="/admin/Maintain/resendNotice"/>
+							<a href="${editTemplateActionUrl}?noticeId=${templateModel.noticeId}">
 								<spring:message code="admin.Maintain.NoticeTemplate.edit" text="edit"/>
 							</a>
+							<c:choose>
+								<c:when test="${templateModel.noticeType == 2 || templateModel.noticeType == 3}">
+									<c:if test="${templateModel.resendEnroll}">
+										&nbsp;&nbsp;
+										<a href="${resendNoticeUrl}?noticeId=${templateModel.noticeId}">
+											<spring:message code="admin.Maintain.NoticeTemplate.resend" text="resend"/>
+										</a>
+									</c:if>
+								</c:when>
+								<c:when test="${templateModel.noticeType == 4}">
+									<c:if test="${templateModel.resendDue}">
+										&nbsp;&nbsp;
+										<a href="${resendNoticeUrl}?noticeId=${templateModel.noticeId}">
+											<spring:message code="admin.Maintain.NoticeTemplate.resend" text="resend"/>
+										</a>
+									</c:if>
+								</c:when>
+							</c:choose>
 						</td>
 					</tr>
 				</c:forEach>
