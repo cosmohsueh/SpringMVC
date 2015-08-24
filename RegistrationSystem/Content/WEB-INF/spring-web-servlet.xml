@@ -18,6 +18,7 @@
     </bean>
     
     <bean id="viewResolver2" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	 <property name="order" value="2"/>
         <property name="prefix" value="/" />
         <property name="suffix" value=".jsp" />
     </bean>
