@@ -11,7 +11,7 @@
 	<jsp:include page="../../border/head.jsp"/>
 	<h1>Sessions</h1>
 	<div>
-		<a href='<spring:url value="/admin/Maintain/editSessions"/>'>
+		<a href='<spring:url value="/admin/Maintain/editSessions.do"/>'>
 			<spring:message code="admin.Maintain.Sessions.addSessions" text="addSessions"/>
 		</a>
 	</div>
@@ -52,8 +52,8 @@
 						<td>${sessions.enrollNotice}</td>
 						<td>${sessions.dueNotice}</td>
 						<td>
-							<spring:url var="editSessionsActionUrl" value="/admin/Maintain/editSessions"/>
-							<spring:url var="delSessionsActionUrl" value="/admin/Maintain/delSessions"/>
+							<spring:url var="editSessionsActionUrl" value="/admin/Maintain/editSessions.do"/>
+							<spring:url var="delSessionsActionUrl" value="/admin/Maintain/delSessions.do"/>
 							<a href="${editSessionsActionUrl}?sessionsId=${sessions.sessionsId}">
 								<spring:message code="admin.Maintain.Sessions.edit" text="edit"/>
 							</a>

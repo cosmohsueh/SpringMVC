@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class admin {
 
-	@RequestMapping(value = "/admin")
+	@RequestMapping(value = "/admin.do")
 	public String index(){
-		return "redirect:/admin/SignUpSearch";
+		return "redirect:/admin/SignUpSearch.do";
 	}
 }

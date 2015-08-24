@@ -28,14 +28,14 @@ public class MaintainUsers {
 	@Autowired
 	private UsersService usersService;
 
-	@RequestMapping(value = "/Users", method = RequestMethod.GET)
+	@RequestMapping(value = "/Users.do", method = RequestMethod.GET)
 	public ModelAndView index() throws SQLException{
 		ModelAndView model = new ModelAndView("admin/Maintain/ViewUsers");
 		model.addObject("listUsers", usersService.findUsersAll());
 		return model;
 	}
 	
-	@RequestMapping(value = "/editUsers", method = RequestMethod.GET)
+	@RequestMapping(value = "/editUsers.do", method = RequestMethod.GET)
 	public ModelAndView editUsers(@RequestParam(required = false) Integer userId){
 		ModelAndView model = new ModelAndView("admin/Maintain/FormUsers");
 		Users users = new Users();
@@ -46,20 +46,20 @@ public class MaintainUsers {
 		return model;
 	}
 	
-	@RequestMapping(value = "/delUsers", method = RequestMethod.GET)
+	@RequestMapping(value = "/delUsers.do", method = RequestMethod.GET)
 	public ModelAndView deleteUsers(@RequestParam Integer userId){
 		LOGGER.debug("deleteUsers: " + userId);
-		ModelAndView model = new ModelAndView("redirect:/admin/Maintain/Users");
+		ModelAndView model = new ModelAndView("redirect:/admin/Maintain/Users.do");
 		usersService.deleteUser(userId);
 		return model;
 	}
 	
-	@RequestMapping(value = "/saveUsers")
+	@RequestMapping(value = "/saveUsers.do")
 	public ModelAndView saveUsers(){
-		return new ModelAndView("redirect:/admin/Maintain/Users");
+		return new ModelAndView("redirect:/admin/Maintain/Users.do");
 	}
 	
-	@RequestMapping(value = "/saveUsers", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveUsers.do", method = RequestMethod.POST)
 	public ModelAndView saveUsers(@ModelAttribute("usersForm") @Valid Users usersForm, BindingResult result){
 		LOGGER.debug(usersForm.toString());
 		ModelAndView model = new ModelAndView();
@@ -67,7 +67,7 @@ public class MaintainUsers {
 			model.setViewName("admin/Maintain/FormUsers");
 		}else{
 			usersService.saveUsers(usersForm);
-			model.setViewName("redirect:/admin/Maintain/Users");
+			model.setViewName("redirect:/admin/Maintain/Users.do");
 		}
 		return model;
 	}

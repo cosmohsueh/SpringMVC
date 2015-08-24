@@ -13,7 +13,7 @@
 	<jsp:include page="../border/head.jsp"/>
 	<h1>signupSearch</h1>
 	<div>
-		<spring:url var="SignUpSearchActionUrl" value="/admin/SignUpSearch"/>
+		<spring:url var="SignUpSearchActionUrl" value="/admin/SignUpSearch.do"/>
 		<form:form action="${SignUpSearchActionUrl}" modelAttribute="signUpSearchForm" method="POST">
 			<table>
 				<tr>
@@ -118,7 +118,7 @@
 				</c:forEach>
 				<tr>
 					<td>
-						<spring:url var="downloadExcelUrl" value="/admin/downloadExcel"/>
+						<spring:url var="downloadExcelUrl" value="/admin/downloadExcel.do"/>
 						<a href="${downloadExcelUrl}?sessionsId=${sessionsId}">
 							<spring:message code="admin.SignUpSearch.searchForm.print" text="print"/>
 						</a>
@@ -127,8 +127,8 @@
 			</table>
 		</c:if>
 	</div>
-	<spring:url var="ActivityJson" value="/admin/ActivityJson"/>
-	<spring:url var="sessionJson" value="/admin/SessionsJson"/>
+	<spring:url var="ActivityJson" value="/admin/ActivityJson.do"/>
+	<spring:url var="sessionJson" value="/admin/SessionsJson.do"/>
 	<script type="text/javascript">
 	jQuery(function($){
 		$.getJSON('${ActivityJson}', 

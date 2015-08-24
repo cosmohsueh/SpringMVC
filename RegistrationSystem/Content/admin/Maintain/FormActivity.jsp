@@ -9,7 +9,7 @@
 </head>
 <body>
 	<jsp:include page="../../border/head.jsp"/>
-	<spring:url var="activityActionUrl" value="/admin/Maintain/saveActivity"/>
+	<spring:url var="activityActionUrl" value="/admin/Maintain/saveActivity.do"/>
 	<form:form action="${activityActionUrl}" modelAttribute="activityForm" method="POST">
 		<table>
 			<form:hidden path="activityId"/>
@@ -28,7 +28,7 @@
 					<spring:message var="cancelMsg" code="admin.Maintain.Activity.ActivityForm.cancel" text="cancel"/>
 					<input type="submit" value="${submitMsg}"/>
 					&nbsp;&nbsp;
-					<a href='<spring:url value="/admin/Maintain/Activity"/>'>${cancelMsg}</a>
+					<a href='<spring:url value="/admin/Maintain/Activity.do"/>'>${cancelMsg}</a>
 				</td>
 			</tr>
 		</table>

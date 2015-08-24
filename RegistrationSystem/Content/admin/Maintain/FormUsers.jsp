@@ -10,7 +10,7 @@
 </head>
 <body>
 	<jsp:include page="../../border/head.jsp"/>
-	<spring:url var="usersActionUrl" value="/admin/Maintain/saveUsers"/>
+	<spring:url var="usersActionUrl" value="/admin/Maintain/saveUsers.do"/>
 	<form:form action="${usersActionUrl}" modelAttribute="usersForm" method="POST">
 		<table>
 			<form:hidden path="userId"/>
@@ -56,7 +56,7 @@
 					<spring:message var="cancelMsg" code="admin.Maintain.Users.UsersForm.cancel" text="cancel"/>
 					<input type="submit" value="${submitMsg}"/>
 					&nbsp;&nbsp;
-					<a href='<spring:url value="/admin/Maintain/Users"/>'>
+					<a href='<spring:url value="/admin/Maintain/Users.do"/>'>
 						${cancelMsg}
 					</a>
 				</td>

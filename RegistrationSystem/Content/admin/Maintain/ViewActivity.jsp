@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="../../border/head.jsp"/>
 	
-	<spring:url var="editActivityUrl" value="/admin/Maintain/editActivity"/>
+	<spring:url var="editActivityUrl" value="/admin/Maintain/editActivity.do"/>
 	<a href="${editActivityUrl}">
 		<spring:message code="admin.Maintain.Activity.addActivity" text="addActivity"/>
 	</a>
@@ -27,8 +27,8 @@
 				<tr>
 					<td>${activity.activityName}</td>
 					<td>
-						<spring:url var="editActivityUrl" value="/admin/Maintain/editActivity"/>
-						<spring:url var="delActivityUrl" value="/admin/Maintain/delActivity"/>
+						<spring:url var="editActivityUrl" value="/admin/Maintain/editActivity.do"/>
+						<spring:url var="delActivityUrl" value="/admin/Maintain/delActivity.do"/>
 						<a href="${editActivityUrl}?activityId=${activity.activityId}">
 							<spring:message code="admin.Maintain.Activity.edit" text="edit"/>
 						</a>

@@ -33,26 +33,26 @@ public class SignUpSearch {
 	@Autowired
 	private ApplicantsService applicantsService;
 
-	@RequestMapping(value = "/SignUpSearch", method = RequestMethod.GET)
+	@RequestMapping(value = "/SignUpSearch.do", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("admin/SignUpSearch");
 		model.addObject("signUpSearchForm", new SignUpSearchModel());
 		return model;
 	}
 
-	@RequestMapping(value = "/ActivityJson", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/ActivityJson.do", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody Set<Activity> getActivityJson() {
 		return new HashSet<Activity>(activityService.findAll());
 	}
 
-	@RequestMapping(value = "/SessionsJson", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/SessionsJson.do", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody Set<Sessions> getSessionsJson(
 			@RequestParam Integer activityId) {
 		return new HashSet<Sessions>(
 				sessionsService.findSessionsByActivityId(activityId));
 	}
 
-	@RequestMapping(value = "/SignUpSearch", method = RequestMethod.POST)
+	@RequestMapping(value = "/SignUpSearch.do", method = RequestMethod.POST)
 	public ModelAndView search(
 			@ModelAttribute(value = "signUpSearchForm") SignUpSearchModel signUpSearchForm) {
 		ModelAndView model = new ModelAndView("admin/SignUpSearch");
@@ -73,7 +73,7 @@ public class SignUpSearch {
 		return model;
 	}
 
-	@RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+	@RequestMapping(value = "/downloadExcel.do", method = RequestMethod.GET)
 	public ModelAndView downloadExcel(@RequestParam Integer sessionsId) {
 		List<Applicants> applicantsList = applicantsService
 				.findApplicantsBySessionsId(sessionsId);

@@ -13,7 +13,7 @@
 </head>
 <body>
 	<jsp:include page="../../border/head.jsp"/>
-	<spring:url var="sessionsActionUrl" value="/admin/Maintain/saveSessions"/>
+	<spring:url var="sessionsActionUrl" value="/admin/Maintain/saveSessions.do"/>
 	<form:form action="${sessionsActionUrl}" modelAttribute="sessionsForm" method="POST">
 		<table>
 			<form:hidden path="sessionsId"/>
@@ -77,7 +77,7 @@
 					<spring:message var="cancelMsg" code="admin.Maintain.Sessions.SessionsForm.cancel" text="cancel"/>
 					<input type="submit" value="${submitMsg}"/>
 					&nbsp;&nbsp;
-					<a href='<spring:url value="/admin/Maintain/Sessions"/>'>${cancelMsg}</a>
+					<a href='<spring:url value="/admin/Maintain/Sessions.do"/>'>${cancelMsg}</a>
 				</td>
 			</tr>
 		</table>

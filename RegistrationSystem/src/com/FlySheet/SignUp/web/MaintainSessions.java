@@ -32,14 +32,14 @@ public class MaintainSessions {
 	@Autowired
 	private ActivityService activityService;
 
-	@RequestMapping(value = "/Sessions")
+	@RequestMapping(value = "/Sessions.do")
 	public ModelAndView index(){
 		ModelAndView model = new ModelAndView("admin/Maintain/ViewSessions");
 		model.addObject("sessionsList", sessionsService.findAllWithActivity());
 		return model;
 	}
 	
-	@RequestMapping(value = "/editSessions", method = RequestMethod.GET)
+	@RequestMapping(value = "/editSessions.do", method = RequestMethod.GET)
 	public ModelAndView editSessions(@RequestParam(required = false) Integer sessionsId){
 		ModelAndView model = new ModelAndView("admin/Maintain/FormSessions");
 		Sessions sessions = new Sessions();
@@ -50,12 +50,12 @@ public class MaintainSessions {
 		return model;
 	}
 	
-	@RequestMapping(value = "/saveSessions")
+	@RequestMapping(value = "/saveSessions.do")
 	public ModelAndView saveSessions(){
-		return new ModelAndView("redirect:/admin/Maintain/Sessions");
+		return new ModelAndView("redirect:/admin/Maintain/Sessions.do");
 	}
 	
-	@RequestMapping(value = "/saveSessions", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveSessions.do", method = RequestMethod.POST)
 	public ModelAndView saveSessions(@ModelAttribute("sessionsForm") @Valid Sessions sessionsForm, BindingResult result){
 		LOGGER.debug(sessionsForm.toString());
 		ModelAndView model = new ModelAndView();
@@ -63,16 +63,16 @@ public class MaintainSessions {
 			model.setViewName("admin/Maintain/FormSessions");
 		}else{
 			sessionsService.saveSessions(sessionsForm);
-			model.setViewName("redirect:/admin/Maintain/Sessions");
+			model.setViewName("redirect:/admin/Maintain/Sessions.do");
 		}
 		return model;
 	}
 	
-	@RequestMapping(value = "/delSessions", method = RequestMethod.GET)
+	@RequestMapping(value = "/delSessions.do", method = RequestMethod.GET)
 	public ModelAndView delSessions(@RequestParam Integer sessionsId){
 		LOGGER.debug("delSessions: " + sessionsId);
 		sessionsService.delSessions(sessionsId);
-		return new ModelAndView("redirect:/admin/Maintain/Sessions");
+		return new ModelAndView("redirect:/admin/Maintain/Sessions.do");
 	}
 	
 	@ModelAttribute("activityList")

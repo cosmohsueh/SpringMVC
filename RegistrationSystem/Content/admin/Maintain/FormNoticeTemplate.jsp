@@ -11,7 +11,7 @@
 </head>
 <body>
 	<jsp:include page="../../border/head.jsp"/>
-	<spring:url var="saveTemplateUrl" value="/admin/Maintain/saveTemplate"/>
+	<spring:url var="saveTemplateUrl" value="/admin/Maintain/saveTemplate.do"/>
 	<form:form action="${saveTemplateUrl}" method="POST" modelAttribute="templateForm">
 		<table>
 			<form:hidden path="noticeId"/>
@@ -53,7 +53,7 @@
 				<td colspan="2">
 					<input type="submit" value='<spring:message code="admin.Maintain.NoticeTemplate.templateForm.submit" text="submit"/>' />
 					&nbsp;&nbsp;
-					<a href='<spring:url value="/admin/Maintain/NoticeTemplate"/>'>
+					<a href='<spring:url value="/admin/Maintain/NoticeTemplate.do"/>'>
 						<spring:message code="admin.Maintain.NoticeTemplate.templateForm.cancel" text="cancel"/>
 					</a>
 				</td>

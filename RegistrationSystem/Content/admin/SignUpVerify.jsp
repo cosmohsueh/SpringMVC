@@ -11,7 +11,7 @@
 	<jsp:include page="../border/head.jsp"/>
 	<h1>SignUpVerify</h1>
 	<div>
-		<form action='<spring:url value="/admin/Verify"/>' method="post" enctype="multipart/form-data">
+		<form action='<spring:url value="/admin/Verify.do"/>' method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>

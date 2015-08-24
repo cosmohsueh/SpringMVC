@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="../../border/head.jsp"/>
 	<dir>
-		<spring:url var="newUsersActionUrl" value="/admin/Maintain/editUsers"/>
+		<spring:url var="newUsersActionUrl" value="/admin/Maintain/editUsers.do"/>
 		<a href="${newUsersActionUrl}"><spring:message code="admin.Maintain.Users.addUser" text="addUser"/></a>
 	</dir>
 	<div>
@@ -34,8 +34,8 @@
 					<td>${users.userName}</td>
 					<td>${users.email}</td>
 					<td>
-						<spring:url var="editUsersActionUrl" value="/admin/Maintain/editUsers"/>
-						<spring:url var="delUsersActionUrl" value="/admin/Maintain/delUsers"/>
+						<spring:url var="editUsersActionUrl" value="/admin/Maintain/editUsers.do"/>
+						<spring:url var="delUsersActionUrl" value="/admin/Maintain/delUsers.do"/>
 						<a href="${editUsersActionUrl}?userId=${users.userId}">
 							<spring:message code="admin.Maintain.Users.edit" text="edit"/>
 						</a>

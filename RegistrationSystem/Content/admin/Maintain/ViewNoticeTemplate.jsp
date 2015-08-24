@@ -51,8 +51,8 @@
 							</c:choose>
 						</td>
 						<td>
-							<spring:url var="editTemplateActionUrl" value="/admin/Maintain/editTemplate"/>
-							<spring:url var="resendNoticeUrl" value="/admin/Maintain/resendNotice"/>
+							<spring:url var="editTemplateActionUrl" value="/admin/Maintain/editTemplate.do"/>
+							<spring:url var="resendNoticeUrl" value="/admin/Maintain/resendNotice.do"/>
 							<a href="${editTemplateActionUrl}?noticeId=${templateModel.noticeId}">
 								<spring:message code="admin.Maintain.NoticeTemplate.edit" text="edit"/>
 							</a>

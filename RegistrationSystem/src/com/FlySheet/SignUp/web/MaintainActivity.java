@@ -26,14 +26,14 @@ public class MaintainActivity {
 	@Autowired
 	private ActivityService activityService;
 
-	@RequestMapping(value = "/Activity", method = RequestMethod.GET)
+	@RequestMapping(value = "/Activity.do", method = RequestMethod.GET)
 	public ModelAndView index(){
 		ModelAndView model = new ModelAndView("admin/Maintain/ViewActivity");
 		model.addObject("activityList", activityService.findAll());
 		return model;
 	}
 	
-	@RequestMapping(value = "/editActivity", method = RequestMethod.GET)
+	@RequestMapping(value = "/editActivity.do", method = RequestMethod.GET)
 	public ModelAndView editActivity(@RequestParam(required = false) Integer activityId){
 		ModelAndView model = new ModelAndView("admin/Maintain/FormActivity");
 		Activity activity = new Activity();
@@ -44,14 +44,14 @@ public class MaintainActivity {
 		return model;
 	}
 	
-	@RequestMapping(value = "/delActivity", method = RequestMethod.GET)
+	@RequestMapping(value = "/delActivity.do", method = RequestMethod.GET)
 	public ModelAndView delActivity(@RequestParam Integer activityId){
 		LOGGER.debug("delActivity: " + activityId);
 		activityService.delActivity(activityId);
-		return new ModelAndView("redirect:/admin/Maintain/Activity");
+		return new ModelAndView("redirect:/admin/Maintain/Activity.do");
 	}
 	
-	@RequestMapping(value = "/saveActivity", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveActivity.do", method = RequestMethod.POST)
 	public ModelAndView saveActivity(@ModelAttribute("activityForm") @Valid Activity activityForm, BindingResult result){
 		LOGGER.debug(activityForm.toString());
 		ModelAndView model = new ModelAndView();
@@ -59,7 +59,7 @@ public class MaintainActivity {
 			model.setViewName("admin/Maintain/FormActivity");
 		}else{
 			activityService.saveActivity(activityForm);
-			model.setViewName("redirect:/admin/Maintain/Activity");
+			model.setViewName("redirect:/admin/Maintain/Activity.do");
 		}
 		return model;
 	}

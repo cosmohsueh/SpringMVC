@@ -27,7 +27,7 @@ public class MaintainNoticeTemplate {
 	@Autowired
 	private SessionsService sessionsService;
 
-	@RequestMapping(value = "/NoticeTemplate")
+	@RequestMapping(value = "/NoticeTemplate.do")
 	public ModelAndView index(){
 		ModelAndView model = new ModelAndView("admin/Maintain/ViewNoticeTemplate");
 		model.addObject("templateModelList", noticeService.findTemplateModelView());
@@ -35,7 +35,7 @@ public class MaintainNoticeTemplate {
 		return model;
 	}
 	
-	@RequestMapping(value = "/editTemplate", method = RequestMethod.GET)
+	@RequestMapping(value = "/editTemplate.do", method = RequestMethod.GET)
 	public ModelAndView editTemplate(@RequestParam(required = false) Integer noticeId){
 		ModelAndView model = new ModelAndView("admin/Maintain/FormNoticeTemplate");
 		NoticeTemplate template = new NoticeTemplate();
@@ -48,25 +48,25 @@ public class MaintainNoticeTemplate {
 		return model;
 	}
 	
-	@RequestMapping(value = "/resendNotice", method = RequestMethod.GET)
+	@RequestMapping(value = "/resendNotice.do", method = RequestMethod.GET)
 	public ModelAndView resendNotice(@RequestParam Integer noticeId){
 		NoticeTemplate noticeTemp = noticeService.findTemplateById(noticeId);
 		if(noticeTemp != null){
 			noticeService.resendNotice(noticeTemp);
 		}
-		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate");
+		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate.do");
 	}
 	
-	@RequestMapping(value = "/saveTemplate", method = RequestMethod.GET)
+	@RequestMapping(value = "/saveTemplate.do", method = RequestMethod.GET)
 	public ModelAndView saveTemplate(){
-		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate");
+		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate.do");
 	}
 	
-	@RequestMapping(value = "/saveTemplate", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveTemplate.do", method = RequestMethod.POST)
 	public ModelAndView saveTemplate(@ModelAttribute NoticeTemplate templateForm){
 		LOGGER.debug(templateForm.toString());
 		noticeService.saveTemplate(templateForm);
-		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate");
+		return new ModelAndView("redirect:/admin/Maintain/NoticeTemplate.do");
 	}
 	
 }

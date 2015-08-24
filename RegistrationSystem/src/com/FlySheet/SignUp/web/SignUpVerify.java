@@ -26,17 +26,17 @@ public class SignUpVerify {
 	@Autowired
 	private ApplicantsService applicantsService;
 
-	@RequestMapping(value = "/SignUpVerify")
+	@RequestMapping(value = "/SignUpVerify.do")
 	public ModelAndView index(){
 		return new ModelAndView("admin/SignUpVerify");
 	}
 	
-	@RequestMapping(value = "/Verify")
+	@RequestMapping(value = "/Verify.do")
 	public ModelAndView verify(){
-		return new ModelAndView("redirect:/admin/SignUpVerify");
+		return new ModelAndView("redirect:/admin/SignUpVerify.do");
 	}
 	
-	@RequestMapping(value = "/Verify", method = RequestMethod.POST)
+	@RequestMapping(value = "/Verify.do", method = RequestMethod.POST)
 	public ModelAndView verify(HttpServletRequest request,
 			@RequestParam("attachFile") CommonsMultipartFile attachFile){
 		try {
@@ -51,6 +51,6 @@ public class SignUpVerify {
 		} catch (Exception e){
 			LOGGER.error(e.getMessage(), e);
 		}
-		return new ModelAndView("redirect:/admin/SignUpSearch");
+		return new ModelAndView("redirect:/admin/SignUpSearch.do");
 	}
 }
